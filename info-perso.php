@@ -15,7 +15,7 @@ if (!isset($_SESSION['login'])) {
     header('Location: index.php');
 }
 
-require 'elements/header.php';
+require 'assets/header.php';
 ?>
 
 <?php if ($_SESSION['role'] == 'Parent'): ?>
@@ -23,18 +23,17 @@ require 'elements/header.php';
         <div class="d-flex align-items-center">
             <div class="choice-title"> Informations liées à mon compte </div>
         </div>
-        <div class="choice-title float-end"> <i class="fa-solid fa-print"></i> </div>
     </div>
         <div class="listEleve table-responsive row align-items-start m-2">
             <div class="col-sm-4 pt-2 pb-2" style="width: 300px; box-shadow: 0.6rem 0.05rem 0.6rem -0.5rem rgba(0, 0, 0, 0.1607843137); height: 100%;">
                 <div class="nom-col-compte"> Mes informations </div>
                 <div class="d-flex justify-content-center m-3">
                     <?php if ($_SESSION['role'] == 'Eleve'): ?>
-                        <img src="./img/espace-eleve.svg" class="rounded mx-auto d-block" height="110px" alt="Espace élève image">
+                        <img src="assets/img/espace-eleve.svg" class="rounded mx-auto d-block" height="110px" alt="Espace élève image">
                     <?php elseif ($_SESSION['role'] == 'Parent'): ?>
-                        <img src="./img/espace-parent.svg" class="rounded mx-auto d-block" height="110px" alt="Espace parent image">
+                        <img src="assets/img/espace-parent.svg" class="rounded mx-auto d-block" height="110px" alt="Espace parent image">
                     <?php elseif ($_SESSION['role'] == 'Professeur'): ?>
-                        <img src="./img/espace-professeur.svg" class="rounded mx-auto d-block" height="110px" alt="Espace professeur image">
+                        <img src="assets/img/espace-professeur.svg" class="rounded mx-auto d-block" height="110px" alt="Espace professeur image">
                     <?php endif ?>
                 </div>
                 <div>
@@ -135,5 +134,5 @@ require 'elements/header.php';
 <?php endif ?>
 
 <?php
-require 'elements/footer.php';
+require 'assets/footer.php';
 ?>

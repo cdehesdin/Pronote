@@ -16,7 +16,7 @@ if (!isset($_SESSION['login'])) {
 // Définition des listes utilisés : gazzuro
 $listeDesDevoirs = [];
 
-require 'elements/header.php';
+require 'assets/header.php';
 
 if (isset($_GET['classe'])) {
     $queryListDevoirs = "SELECT Controles.dates, Controles.coefficient, Controles.idControle, Controles.nomControle FROM Controles INNER JOIN Enseignement ON Controles.idEnseignement = Enseignement.idEnseignement INNER JOIN Classe ON Enseignement.idClasse = Classe.idClasse WHERE Enseignement.idProf = " . $_SESSION['id'] . " AND Classe.nom = '" . $_GET['classe'] . "' ORDER BY Controles.dates;";
@@ -128,7 +128,6 @@ if (isset($_GET['classe'])) {
                 </form>
             </div>
         </div>
-        <div class="choice-title float-end"> <i class="fa-solid fa-print"></i> </div>
     </div>
     <div class="listEleve table-responsive">
         <?php if (isset($_GET['classe'])): ?>
@@ -334,5 +333,5 @@ if (isset($_GET['classe'])) {
 <?php endif ?>
 
 <?php
-require 'elements/footer.php';
+require 'assets/footer.php';
 ?>

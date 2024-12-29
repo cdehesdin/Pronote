@@ -8,7 +8,7 @@ if (!isset($_SESSION['login'])) {
     $title = "Accueil";
 }
 
-require 'elements/header.php';
+require 'assets/header.php';
 
 if (!isset($_SESSION['login']) && isset($_POST['role'])) {
     $query = "SELECT DISTINCT * FROM Utilisateur";
@@ -87,13 +87,13 @@ if (!isset($_SESSION['login']) && isset($_POST['role'])) {
                     <!-- Image en fonction du type d'utilisateur choisie -->
                     <div class="tab-content space mb-3" id="login-img-tabContent">
                         <div class="tab-pane fade show active" id="login-img-1" role="tabpanel" aria-labelledby="login-img-1-tab" tabindex="0">
-                            <img src="./img/espace-eleve.svg" class="rounded mx-auto d-block" height="110px" alt="Espace élève image">
+                            <img src="assets/img/espace-eleve.svg" class="rounded mx-auto d-block" height="110px" alt="Espace élève image">
                         </div>
                         <div class="tab-pane fade" id="login-img-2" role="tabpanel" aria-labelledby="login-img-2-tab" tabindex="1">
-                            <img src="./img/espace-parent.svg" class="rounded mx-auto d-block" height="110px" alt="Espace parent image">
+                            <img src="assets/img/espace-parent.svg" class="rounded mx-auto d-block" height="110px" alt="Espace parent image">
                         </div>
                         <div class="tab-pane fade" id="login-img-3" role="tabpanel" aria-labelledby="login-img-3-tab" tabindex="2">
-                            <img src="./img/espace-professeur.svg" class="rounded mx-auto d-block" height="110px" alt="Espace professeur image">
+                            <img src="assets/img/espace-professeur.svg" class="rounded mx-auto d-block" height="110px" alt="Espace professeur image">
                         </div>
                     </div>
                     <!-- Choix du type de l'utilisateur -->
@@ -132,5 +132,5 @@ if (!isset($_SESSION['login']) && isset($_POST['role'])) {
 <?php endif ?>
 
 <?php
-require 'elements/footer.php';
+require 'assets/footer.php';
 ?>

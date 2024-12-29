@@ -20,7 +20,7 @@ if (!isset($_SESSION['login'])) {
 // Définition des listes utilisés
 $moyenneParMatiere = [];
 
-require 'elements/header.php';
+require 'assets/header.php';
 
 if (isset($_GET['classe'])) {
     $queryNameEtListe = "SELECT DISTINCT Matiere.idMatiere, Eleves.idEleve, Classe.idClasse, Enseignement.idEnseignement FROM Matiere INNER JOIN Profs ON Profs.idMatiere = Matiere.idMatiere INNER JOIN Enseignement ON Profs.idProf = Enseignement.idProf INNER JOIN Classe ON Classe.idClasse = Enseignement.idClasse INNER JOIN Eleves ON Eleves.idClasse = Enseignement.idClasse WHERE Classe.nom = '" . $_GET['classe'] . "';";
@@ -147,7 +147,6 @@ if ($_SESSION['role'] == 'Eleve' || ($_SESSION['role'] == 'Parent' && isset($_GE
                 <?php endif; ?>
             <?php endif; ?>
         </div>
-        <div class="choice-title float-end"> <i class="fa-solid fa-print"></i> </div>
     </div>
     <div class="listEleve table-responsive">
         <?php if ($_SESSION['role'] == 'Eleve' || ($_SESSION['role'] == 'Parent' && isset($_GET['enfants'])) || ($_SESSION['role'] == 'Professeur' && isset($_POST['eleves']) && isset($_GET['classe']))): ?>
@@ -294,5 +293,5 @@ if ($_SESSION['role'] == 'Eleve' || ($_SESSION['role'] == 'Parent' && isset($_GE
 <?php endif ?>
 
 <?php
-require 'elements/footer.php';
+require 'assets/footer.php';
 ?>

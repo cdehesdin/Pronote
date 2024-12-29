@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect('localhost','root','', 'NSINote');
+$link = mysqli_connect('localhost','root','', 'pronote');
 mysqli_set_charset($link, "utf8");
 
 if (isset($_POST['logout'])) {
@@ -7,7 +7,7 @@ if (isset($_POST['logout'])) {
     header('Location: login.php');
     exit;
 }
-require_once './elements/data.php';
+require_once './assets/data.php';
 ?>
 
 <!doctype html>
@@ -18,8 +18,8 @@ require_once './elements/data.php';
         <meta name="author" content="NSI">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
-        <link href="elements/style.css" rel="stylesheet">
-        <link rel="icon" href="./img/logo-pronote.png" />
+        <link href="assets/style.css" rel="stylesheet">
+        <link rel="icon" href="./assets/img/logo-pronote.png" />
         <title>
             <?php if (isset($title)) : ?>
                 <?= $title . ' | Pronote' ?>
@@ -28,15 +28,14 @@ require_once './elements/data.php';
             <?php endif ?>
         </title>
     </head>
-    <body style="background-image: url(./img/background.png)!important;">
+    <body style="background-image: url(./assets/img/background.png)!important;">
         <header style="z-index: 10000;">
-            <div class="d-flex justify-content-between align-items-center p-1 bg-white">
-                <div class="ps-1"><img src="./img/logo-pronote.png" class="rounded" height="40px" alt="Logo de Pronote"></div>
+            <div class="d-flex justify-content-center align-items-center p-1 bg-white">
                 <div class="text-center name-school">
-                    <a class="btn btn-logout name-school" data-bs-toggle="modal" data-bs-target="#contactEtablissement">
-                        <i class="fa-regular fa-address-card pe-1"></i> Lycée général et technologique Descartes
-                    </a>
-                    <?php if (isset($_SESSION['login'])): ?> <br>
+                    <div class="name-school" >
+                        <i class="fa-regular fa-address-card pe-1"></i> Établissement scolaire
+                    </div>
+                    <?php if (isset($_SESSION['login'])): ?>
                         <span class="name-user">
                         <?php
                             if ($_SESSION['role'] == 'Eleve') {
@@ -53,11 +52,6 @@ require_once './elements/data.php';
                             </form>
                         </span>
                     <?php endif; ?>
-                </div>
-                <div class="pe-1">
-                    <a class="btn btn-logout" data-bs-toggle="modal" data-bs-target="#contactEtablissement">
-                        <img src="./img/logo-etablissement.png" class="rounded" height="45px" alt="Logo de l'établissement">
-                    </a>
                 </div>
             </div>
             <?php if (isset($_SESSION['login'])): ?>
@@ -86,7 +80,7 @@ require_once './elements/data.php';
                                             </li>
                                             <?php if ($_SESSION['role'] == 'Parent') {echo nav_subitem('./compte-enfant.php','Compte enfant');} ?>
                                             <?php if ($_SESSION['role'] == 'Professeur') {echo '<hr class="dropdown-divider">';} ?>
-                                            <?php if ($_SESSION['role'] == 'Professeur') {echo nav_subitem('./classes-eleves.php','Classes/élèves');} ?>
+                                            <?php if ($_SESSION['role'] == 'Professeur') {echo nav_subitem('./listeEleves.php','Classes/élèves');} ?>
                                         </ul>
                                     </li>
                                 <?php endif ?>
@@ -102,9 +96,6 @@ require_once './elements/data.php';
                                         <?php if ($_SESSION['role'] == 'Professeur') {echo nav_subitem('./appreciation.php','Appréciations');} ?>
                                     </ul>
                                 </li>
-                            </ul>
-                            <ul class="navbar-nav">
-                                <?= nav_item('./','<i class="fa-regular fa-paper-plane"></i>') ?>
                             </ul>
                         </div>
                     </div>

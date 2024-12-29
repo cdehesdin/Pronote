@@ -9,12 +9,12 @@ if (!isset($_SESSION['login'])) {
     header('Location: login.php');
 }
 
-require './elements/header.php';
+require './assets/header.php';
 ?>
 
 
 
 
 <?php
-require 'elements/footer.php';
+require 'assets/footer.php';
 ?>

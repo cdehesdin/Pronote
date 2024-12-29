@@ -40,7 +40,7 @@ $listMatiere = [
 ];
 $moyenneClasse = $moyenneParMatiere = [];
 
-require 'elements/header.php';
+require 'assets/header.php';
 
 if (!isset($_GET['enfants'])) {$_GET['enfants'] = 0;}
 
@@ -120,7 +120,6 @@ if ($_SESSION['role'] == 'Eleve' || ($_SESSION['role'] == 'Parent' && isset($_GE
                 </form>
             </div>
         </div>
-        <div class="choice-title float-end"> <i class="fa-solid fa-print"></i> </div>
     </div>
     <?php if ($_SESSION['role'] == 'Eleve' || ($_SESSION['role'] == 'Parent' && isset($_GET['enfants']))): ?>
         <div class="listEleve table-responsive" style="overflow: hidden !important;">
@@ -378,5 +377,5 @@ if ($_SESSION['role'] == 'Eleve' || ($_SESSION['role'] == 'Parent' && isset($_GE
 <?php endif ?>
 
 <?php
-require 'elements/footer.php';
+require 'assets/footer.php';
 ?>

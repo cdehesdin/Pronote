@@ -1,32 +1,5 @@
         </main>
         <?php mysqli_close($link); ?>
-        <div class="modal fade" id="contactEtablissement" tabindex="-1" aria-labelledby="contactEtablissementLabel" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" style="z-index: 10000;">
-            <div class="modal-dialog modal-sm modal-dialog-centered">
-                <div class="modal-content">
-                    <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-body-secondary p-1 border-0 btn-close-contact">
-                        <button type="button" class="btn-close btn-close-modal" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </span>
-                    <div class="modal-header"> <div class="en-tete-dialog"> Contacter l'établissement </div> </div>
-                    <div class="modal-body">
-                        <div class="d-flex justify-content-center mb-4">
-                            <img src="./img/logo-etablissement.png" class="rounded" height="100px" alt="Logo de l'établissement">
-                        </div>
-                        <div>
-                            <div class="d-flex mb-2">
-                                <div class="modal-logo"> <i class="fa-solid fa-location-dot"></i> </div>
-                                <div class="modal-description"> 6 boulevard Descartes, <br> Montigny-le-Bretonneux 78180, <br> France </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="modal-logo"> <i class="fa-solid fa-link"></i> </div>
-                                <div class="modal-description">
-                                    <a href="https://lyc-descartes-montigny.ac-versailles.fr/" target="_blank">Accéder au site</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <?php if (isset($_SESSION['login']) && !($_SESSION['role'] == 'Parent')): ?>
             <div class="modal fade" id="monCompte" tabindex="-1" aria-labelledby="monCompteLabel" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" style="z-index: 10000;">
                 <div class="modal-dialog modal-sm modal-dialog-centered">
@@ -38,11 +11,11 @@
                         <div class="modal-body">
                             <div class="d-flex justify-content-center mt-2 mb-4">
                                 <?php if ($_SESSION['role'] == 'Eleve'): ?>
-                                    <img src="./img/espace-eleve.svg" class="rounded mx-auto d-block" height="110px" alt="Espace élève image">
+                                    <img src="./assets/img/espace-eleve.svg" class="rounded mx-auto d-block" height="110px" alt="Espace élève image">
                                 <?php elseif ($_SESSION['role'] == 'Parent'): ?>
-                                    <img src="./img/espace-parent.svg" class="rounded mx-auto d-block" height="110px" alt="Espace parent image">
+                                    <img src="./assets/img/espace-parent.svg" class="rounded mx-auto d-block" height="110px" alt="Espace parent image">
                                 <?php elseif ($_SESSION['role'] == 'Professeur'): ?>
-                                    <img src="./img/espace-professeur.svg" class="rounded mx-auto d-block" height="110px" alt="Espace professeur image">
+                                    <img src="./assets/img/espace-professeur.svg" class="rounded mx-auto d-block" height="110px" alt="Espace professeur image">
                                 <?php endif ?>
                             </div>
                             <div>

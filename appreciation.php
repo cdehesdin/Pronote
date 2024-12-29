@@ -20,10 +20,10 @@ if (!isset($_POST['ordres'])){
     unset($_GET);
 }
 
-// Définition des listes utilisés : gazzuro
+// Définition des listes utilisées
 $listeDesDevoirs = $moyenneClasse = [];
 
-require 'elements/header.php';
+require 'assets/header.php';
 
 $queryListIdClasse = "SELECT DISTINCT Classe.nom, Classe.idClasse FROM Classe INNER JOIN Enseignement ON Classe.idClasse = Enseignement.idClasse WHERE Enseignement.idProf = " . $_SESSION['id'] . ";";
 $reqListIdClasse = mysqli_query($link,$queryListIdClasse);
@@ -119,7 +119,6 @@ if (isset($_GET['classe'])) {
                 </div>
             <?php endif; ?>
         </div>
-        <div class="choice-title float-end"> <i class="fa-solid fa-print"></i> </div>
     </div>
     <div class="listEleve table-responsive">
         <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == 'Professeur') && isset($_POST['ordres']) && $_POST['ordres'] == 'eleve'): ?>
@@ -251,5 +250,5 @@ if (isset($_GET['classe'])) {
 <?php endif ?>
 
 <?php
-require 'elements/footer.php';
+require 'assets/footer.php';
 ?>

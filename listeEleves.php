@@ -13,7 +13,7 @@ if (!isset($_SESSION['login'])) {
     header('Location: login.php');
 }
 
-require 'elements/header.php';
+require 'assets/header.php';
 ?>
 
 <?php if ($_SESSION['role'] == 'Professeur'): ?>
@@ -36,7 +36,6 @@ require 'elements/header.php';
                 </form>
             </div>
         </div>
-        <div class="choice-title float-end"> <i class="fa-solid fa-print"></i> </div>
     </div>
     <div class="listEleve table-responsive" style="overflow: hidden !important;">
         <?php if (isset($_POST['classe'])): ?>
@@ -106,5 +105,5 @@ require 'elements/header.php';
 <?php endif ?>
 
 <?php
-require 'elements/footer.php';
+require 'assets/footer.php';
 ?>
