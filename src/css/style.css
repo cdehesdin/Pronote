@@ -1,0 +1,141 @@
+/**************************************************/
+/*             IMPORT STYLE COMPONENTS            */
+/**************************************************/
+@import url("./colors.css");
+@import url("./components.css");
+@import url("./header.css");
+@import url("./footer.css");
+
+
+/**************************************************/
+/*                      FONTS                     */
+/**************************************************/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-Black.woff2) format("woff2");
+    font-weight: 900;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-BlackItalic.woff2) format("woff2");
+    font-weight: 900;
+    font-style: italic;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-Bold.woff2) format("woff2");
+    font-weight: 700;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-BoldItalic.woff2) format("woff2");
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-SemiBold.woff2) format("woff2");
+    font-weight: 600;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-SemiBoldItalic.woff2) format("woff2");
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-ExtraBold.woff2) format("woff2");
+    font-weight: 800;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-ExtraBoldItalic.woff2) format("woff2");
+    font-weight: 800;
+    font-style: italic;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-ExtraLight.woff2) format("woff2");
+    font-weight: 200;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-ExtraLightItalic.woff2) format("woff2");
+    font-weight: 200;
+    font-style: italic;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-Light.woff2) format("woff2");
+    font-weight: 300;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-LightItalic.woff2) format("woff2");
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-Medium.woff2) format("woff2");
+    font-weight: 500;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/SNPro-MediumItalic.woff2) format("woff2");
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/snpro-Regular.woff2) format("woff2");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "SN Pro";
+    src: url(../fonts/snpro-Italic.woff2) format("woff2");
+    font-weight: 400;
+    font-style: italic;
+}
+
+
+/**************************************************/
+/*                      MAIN                      */
+/**************************************************/
+html, body {
+    color-scheme: light dark;
+    transition: background-color 0.1s ease, color 0.1s ease;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-attachment: fixed;
+    background-color: var(--background-color);
+    background-image: linear-gradient(to left bottom in oklab, rgb(236, 244, 242) 0px, rgb(255, 255, 255) 60%);
+    color: var(--color);
+    font-family: "SN Pro", 'Poppins Fallback', Helvetica, arial, "sans-serif"!important;
+    font-size: 14px!important;
+    line-height: 1;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.54;
+
+    header > div, header > nav, footer > div, main {
+        width: 100%;
+        max-width: 1462px;
+        margin: 0 auto;
+    }
+
+    main {padding: 32px 16px;}
+}
+
+section {
+    font-weight: 300;
+    font-size: 16px;
+}
