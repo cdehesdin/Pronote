@@ -1,3 +1,27 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : localhost
+-- Généré le : ven. 19 déc. 2025 à 09:08
+-- Version du serveur : 10.4.28-MariaDB
+-- Version de PHP : 8.2.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données : `pronote`
+--
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `AppClasse`
@@ -432,12 +456,10 @@ INSERT INTO `Profs` (`idProf`, `idUtilisateur`, `nom`, `prenom`, `idMatiere`, `s
 --
 
 CREATE TABLE `Utilisateur` (
-  `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,
+  `idUtilisateur` int(11) NOT NULL,
   `login` varchar(100) NOT NULL,
   `mdp` varchar(255) NOT NULL,
-  `role` ENUM('Eleve','Parent','Professeur') NOT NULL,
-  PRIMARY KEY (`idUtilisateur`),
-  UNIQUE KEY `uniq_login` (`login`)
+  `role` enum('Eleve','Parent','Professeur') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -445,42 +467,68 @@ CREATE TABLE `Utilisateur` (
 --
 
 INSERT INTO `Utilisateur` (`idUtilisateur`, `login`, `mdp`, `role`) VALUES
-(1, 'eleve_demo', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
-(2, 'mdescamps_eleve', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
-(3, 'agrondin', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
-(4, 'apaul', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
-(5, 'lblot', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
-(6, 'afuchs', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
-(7, 'agranger', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
-(8, 'jwang', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
-(9, 'ilecomte', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Parent'),
-(10, 'edescamps', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Parent'),
-(11, 'mdescamps_parent', 'mdescamps', 'Parent'),
-(12, 'jgrondin', 'jgrondin', 'Parent'),
-(13, 'ngrondin', 'ngrondin', 'Parent'),
-(14, 'fpaul', 'fpaul', 'Parent'),
-(15, 'parent_demo', 'demoParent', 'Parent'),
-(16, 'jblot', 'jblot', 'Parent'),
-(17, 'sblot', 'sblot', 'Parent'),
-(18, 'tfuchs', 'tfuchs', 'Parent'),
-(19, 'sfuchs', 'sfuchs', 'Parent'),
-(20, 'sgranger', 'sgranger', 'Parent'),
-(21, 'mgranger', 'mgranger', 'Parent'),
-(22, 'dwang', 'dwang', 'Parent'),
-(23, 'cwang', 'cwang', 'Parent'),
-(24, 'gazzuro', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Professeur'),
-(25, 'jweiss', 'jweiss', 'Professeur'),
-(26, 'sramon', 'sramon', 'Professeur'),
-(27, 'ldoucet', 'ldoucet', 'Professeur'),
-(28, 'fgaudin', 'fgaudin', 'Professeur'),
-(29, 'bgallet', 'bgallet', 'Professeur'),
-(30, 'lmartinez', 'lmartinez', 'Professeur'),
-(31, 'salvarez', 'salvarez', 'Professeur'),
-(32, 'ppujol', 'ppujol', 'Professeur'),
-(33, 'nroux', 'nroux', 'Professeur'),
-(34, 'pmillot', 'pmillot', 'Professeur'),
-(35, 'ajoly', 'ajoly', 'Professeur'),
-(36, 'tceccaci', 'tceccaci', 'Professeur'),
-(37, 'jbrown', 'jbrown', 'Professeur'),
-(38, 'asimon', 'asimon', 'Professeur'),
-(39, 'prof_demo', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Professeur');
+(1, 'eleve_demo', '$2y$10$Fu3djB.tdWL/XRXNXWRN0.OEErFKdASIl8Cb2l.CdTYcl7zxmKSNq', 'Eleve'),
+(2, 'mdescamps_eleve', '$2y$10$9I3kyM/upjMrv6IIvw4RR.jDZr1BQUF5WItNUkiV/1YmaPquFXgLS', 'Eleve'),
+(3, 'agrondin', '$2y$10$nsWsSKHl28UDJYZq13m5WOozohmPMTVPZlDe7XwMIUw5eM85RzUq.', 'Eleve'),
+(4, 'apaul', '$2y$10$nMSaY.qgV62a8tXMUl4ECu2UHZrXcaBiXadCTbUO232ImJFWmCqEa', 'Eleve'),
+(5, 'lblot', '$2y$10$ESMWkyNe1RaZJMBRS9hbPu8N/UhXBTPRl7XRbXOfvYcoCiX5FYXnC', 'Eleve'),
+(6, 'afuchs', '$2y$10$Vb5xmYjj.51cXpcMwzUfNeJKs1INmlBpEK709c2RuGAy9cUSOGNK2', 'Eleve'),
+(7, 'agranger', '$2y$10$u.CxqxSNvP5bMLMVMIOFsOTVxcHnvzRPfLL8ww2H2jySbGkMYIMZe', 'Eleve'),
+(8, 'jwang', '$2y$10$LGGqf5zliv.xLLc1RLu6yOi7hW9Y1DD6fMnjHL0VwFjdMqHv5005O', 'Eleve'),
+(9, 'ilecomte', '$2y$10$Imxv8A2siYigltSCoBKo7O0YAcIvt1mbdbPuRUihanVxHrcp5JcPm', 'Parent'),
+(10, 'edescamps', '$2y$10$d1FwLatBWkh0fsrgqZZZ7efe4JZcm0ceErotOqvr3vcLL8yix0w2W', 'Parent'),
+(11, 'mdescamps_parent', '$2y$10$IukXOM9LlRRlWS0OfJBL/.nz140va.vXRoLDqVtisL7TllJz2wO..', 'Parent'),
+(12, 'jgrondin', '$2y$10$iod65tBjUem8um4o6AzLMe832zA7ofRnyEmBG9cI7ppsYckI9xkNK', 'Parent'),
+(13, 'ngrondin', '$2y$10$JIqwCYgT7mlw4lFAMeL0JedF5YoMgvscliFAHLC.k/9TvrGQLwpGa', 'Parent'),
+(14, 'fpaul', '$2y$10$hl7lzB87za2oJugjGxFKfuKjuLPhpiz4Dq2zeDAd.lz0n4hE3NONW', 'Parent'),
+(15, 'parent_demo', '$2y$10$2Wu9Q6o1U.Wbe/6HYkDZeuSObNfT9zj4zIKni7IWbcy4hSvQBlbd2', 'Parent'),
+(16, 'jblot', '$2y$10$OK9iLLk41dhlKGKif2zjsuTxolnMcT/qdTs9VQ9yG.PKJA9aJ99i2', 'Parent'),
+(17, 'sblot', '$2y$10$kI2gbpgCwlVvYIt5jXiGD.nKzyfFMDpH7oGknYmcwZ/vncqosIUwu', 'Parent'),
+(18, 'tfuchs', '$2y$10$0/buu.ShjngNyoo2cYU7PO0YAJ87im1hjS1tQAIv2J60dZgrTIVce', 'Parent'),
+(19, 'sfuchs', '$2y$10$fbBB4Gp4RWGU0RL1MVgfL.aQZJ2rf2BUZQAOKW88YGOrcRrknBgTK', 'Parent'),
+(20, 'sgranger', '$2y$10$tUbfA5LQfEii8jEdLX7VS.npYDZ6ixFXWkqlraQR9nTU.GLIxIc2y', 'Parent'),
+(21, 'mgranger', '$2y$10$S3LT8wvvW3b/zFsJG4jlBOXBFtPAOyrqHd1PAhLn8S.99JEvbrK5i', 'Parent'),
+(22, 'dwang', '$2y$10$PQArczla8dVlBHKMBFACzOtxZ2RNZRyVdf4gudxLLjiHUki213dJ2', 'Parent'),
+(23, 'cwang', '$2y$10$33/CJQCmgIW16cm4BzcDY./aizHtrNpzaYM3nakiwO2ARiubfKmkW', 'Parent'),
+(24, 'gazzuro', '$2y$10$ZGQuxqMMetc4ZpJwwWokh.iTfyZCjqLQzvhNHYIlx4nDRbTzf9VG6', 'Professeur'),
+(25, 'jweiss', '$2y$10$wlxBx8uXx3gdr73XxblSCuhmI9GwZrIJSZ4wtR0ksX4w5yWZHZfO2', 'Professeur'),
+(26, 'sramon', '$2y$10$0zcp2J8RJj3Orgv0OczXUO91jodZANlx689WzWKdZOcKMahQ6mr7G', 'Professeur'),
+(27, 'ldoucet', '$2y$10$BreeNAU.s4zqGkZgxqv1Eeg./1LjV7MGYjhS4IiDtYE9hzc1lJ5M.', 'Professeur'),
+(28, 'fgaudin', '$2y$10$XyF.uhaUmg0koD8/fptbs.c8ZciXg5wSYUsX70hmnn1KCNn.aZ9qa', 'Professeur'),
+(29, 'bgallet', '$2y$10$tmkTnkxBH1Utrb9s91/a7OvQ2ZvYec.U2bVK/8M3ybRCjtNyY02de', 'Professeur'),
+(30, 'lmartinez', '$2y$10$V09yYK.DG.QxYLfFRMsAyeZ64tpsCTlNs.XOTSjRFu5aIK4dwjwae', 'Professeur'),
+(31, 'salvarez', '$2y$10$e5UcEotbc0HFBT7CmbE3XO.VYst/frc9mJI7B2UtwfEwZZPIIHN42', 'Professeur'),
+(32, 'ppujol', '$2y$10$ny2M0kkEc6vnIAsYoj4Of.qec/A/.XsFNWXt/IEJhe5XjE/Umx51y', 'Professeur'),
+(33, 'nroux', '$2y$10$oALb.IcgnPK4qtllNMmXt.MQs3AvzUE0.q4mucqfnrs/N5VQKh9ci', 'Professeur'),
+(34, 'pmillot', '$2y$10$HdX/gPEwqNOYldBIdpsteOORTQ373q/t.zASvo/pFRQGj9Jc5hi/i', 'Professeur'),
+(35, 'ajoly', '$2y$10$z7GmTzjO2I3NDRsbTP5R0O4/Jao.UjZNohKCBYgODB.LUOaPIzHcS', 'Professeur'),
+(36, 'tceccaci', '$2y$10$u/HAfA9yZQgfsIGlGysej.x9IR2/QZVzcppPfIiRFcX6ilII6r8hG', 'Professeur'),
+(37, 'jbrown', '$2y$10$3I3Mv1Jrswp6tMh/S8igq.wMYy8ODkkS14UaLnPbolugrwxcYy88K', 'Professeur'),
+(38, 'asimon', '$2y$10$OLVnEB873ZFh71q3AoCaU.g0ea2vG/si1TtIv9TW7Rqhc.2R0yHqK', 'Professeur'),
+(39, 'prof_demo', '$2y$10$CL/Q0bh6tDoXHzRWDUP1Ueyh64YVHkE1k2VC5bFCYi3A.x5OpW/H.', 'Professeur');
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `Utilisateur`
+--
+ALTER TABLE `Utilisateur`
+  ADD PRIMARY KEY (`idUtilisateur`),
+  ADD UNIQUE KEY `uniq_login` (`login`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `Utilisateur`
+--
+ALTER TABLE `Utilisateur`
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
