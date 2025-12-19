@@ -1,0 +1,162 @@
+body main {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 0 32px;
+}
+
+/*================== Détail des notes ==================*/
+.detail-notes {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    height: 100%;
+    overflow-y: hidden;
+
+    .column-notes {
+        display: block;
+        position: relative;
+        width: 50%;
+        margin-right: 5px!important;
+        box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                    oklab(0.230468 -0.006263 0.000101 / 0.08) 1px 0px 0px 0px;
+
+        > ul {
+            position: absolute;
+            inset: 0;
+            bottom: -90px;
+            height: calc(100% - 90px);
+            overflow-y: auto!important;
+        }
+
+        .moyenne-generale {
+            position: absolute;
+            height: 90px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 5px;
+            box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                        oklab(0.230468 -0.006263 0.000101 / 0.08) 1px 0px 0px 0px;
+        }
+
+        li {
+            display: block;
+            margin-left: 0!important;
+        }
+
+        .column-notes-dates {
+            align-self: center;
+            width: 35px;
+
+            .date-notes {
+                background-color: #ededed;
+                color: var(--main5);
+                align-self: start;
+                border-radius: 7px;
+                font-size: 0.7rem;
+                font-weight: 600;
+                text-align: center;
+                line-height: 0.95;
+                padding: 5px 6px;
+                text-align: center;
+            }
+        }
+    }
+
+    .column-note {
+        width: 50%;
+        padding: 15px 10px!important;
+    }
+}
+
+.detail-notes label {
+    padding: 8px 16px!important;
+    margin: 0;}
+.detail-notes .date-notes {
+    background-color: #ededed;
+    color: var(--main5);
+    align-self: start;
+    border-radius: 7px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 0.95;
+    padding: 5px 6px;
+    text-align: center;}
+.detail-notes .after-date-notes {
+    margin-top: 3px;
+    border-radius: 18px;
+    height: 4px!important;}
+.detail-notes .descriptif-notes {
+    padding-left: 10px;
+    line-height: 1.2;
+    font-size: 0.93rem;
+    min-width: calc(100% - 35px);}
+.descriptif-notes-matiere {
+    text-transform: uppercase;
+    font-weight: 800;}
+.descriptif-notes-de-la-matiere {font-weight: 800;}
+.detail-notes .descriptif-notes-moyenne {
+    font-size: 0.85rem;
+    font-weight: 200;}
+.detail-notes .descriptif-notes-name-controle {
+    font-size: 0.85rem;
+    font-weight: 700;}
+.detail-notes .column-note-icon {
+    margin-top: 5px;
+    align-self: start;
+    width: 35px;}
+.detail-notes .logo-note {
+    background-color: #ededed;
+    color: var(--main4);
+    padding: 6px;
+    border-radius: 25px;
+    font-weight: 900;}
+.detail-notes .titre-de-la-note {
+    padding-left: 10px;
+    line-height: 1.1;
+    font-size: 0.93rem;}
+.detail-notes .description-de-la-note {
+    font-size: 0.93rem;}
+.detail-notes .description-note {
+    display: flex;
+    justify-content: space-between;
+    max-width: 270px;
+    margin-bottom: 3px;
+    font-weight: 200;}
+.detail-notes .notes-eleves {
+    color: var(--main4);
+    font-weight: 600;}
+.detail-notes .notes-active {background-color: #caefe1bd;}
+.detail-notes .bordure-nom-matiere {
+    width: 4px;
+    height: 18px;
+    border-radius: 18px;
+    margin-right: 10px;}
+.detail-notes .nom-matiere {
+    text-transform: uppercase;
+    font-weight: 800;
+    color: var(--main4);
+    font-size: 1.2rem;}
+.detail-notes .nom-note {
+    font-weight: 800;
+    color: var(--main4);
+    font-size: 1.2rem;}
+.moyenne-generale-sous-block {
+    background-color: #ededed;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;}
+.nom-moyenne-eleve {
+    font-weight: 800;
+    color: var(--main4);
+    font-size: 1.2rem;
+    margin-bottom: 7px;}
+.nom-moyenne-classe {font-weight: 600;}

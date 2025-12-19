@@ -14,4 +14,12 @@ try {
 } catch (Exception $e) {
     die('Erreur BDD : ' . $e->getMessage());
 }
+
+$day = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"]; 
+$month = [["janvier","Jan"], ["février","Fév"], ["mars","Mar"], ["avril","Avr"], ["mai","Mai"], ["juin","Juin"], ["juillet","Juil"], ["août","Août"], ["septembre","Sept"], ["octobre","Oct"], ["novembre","Nov"], ["décembre","Déc"]]; 
+// Now
+$date = explode('|', date("w|d|n|Y"));
+// Given time
+$timestamp = time();
+
 ?>
