@@ -18,6 +18,7 @@ a {
     &.btn-primary {
         border-color: var(--main1);
         background-color: var(--main1);
+        color: var(--background-color)!important;
         box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.884068 -0.018382 0.001526 / 0.4) 0px 4px 6px -1px, oklab(0.884068 -0.018382 0.001526 / 0.4) 0px 2px 4px -2px;
 
         &:hover, &:active, &:disabled {

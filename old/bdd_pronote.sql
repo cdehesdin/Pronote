@@ -1,27 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Hôte : localhost
--- Généré le : dim. 19 jan. 2025 à 14:23
--- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.2.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de données : `pronote`
---
-
--- --------------------------------------------------------
 
 --
 -- Structure de la table `AppClasse`
@@ -456,28 +432,30 @@ INSERT INTO `Profs` (`idProf`, `idUtilisateur`, `nom`, `prenom`, `idMatiere`, `s
 --
 
 CREATE TABLE `Utilisateur` (
-  `idUtilisateur` int(11) NOT NULL,
-  `login` varchar(255) NOT NULL,
+  `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(100) NOT NULL,
   `mdp` varchar(255) NOT NULL,
-  `role` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `role` ENUM('Eleve','Parent','Professeur') NOT NULL,
+  PRIMARY KEY (`idUtilisateur`),
+  UNIQUE KEY `uniq_login` (`login`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `Utilisateur`
 --
 
 INSERT INTO `Utilisateur` (`idUtilisateur`, `login`, `mdp`, `role`) VALUES
-(1, 'eleve_demo', 'demoEleve', 'Eleve'),
-(2, 'mdescamps', 'mdescamps', 'Eleve'),
-(3, 'agrondin', 'agrondin', 'Eleve'),
-(4, 'apaul', 'apaul', 'Eleve'),
-(5, 'lblot', 'lblot', 'Eleve'),
-(6, 'afuchs', 'afuchs', 'Eleve'),
-(7, 'agranger', 'agranger', 'Eleve'),
-(8, 'jwang', 'jwang', 'Eleve'),
-(9, 'ilecomte', 'ilecomte', 'Parent'),
-(10, 'edescamps', 'edescamps', 'Parent'),
-(11, 'mdescamps', 'mdescamps', 'Parent'),
+(1, 'eleve_demo', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
+(2, 'mdescamps_eleve', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
+(3, 'agrondin', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
+(4, 'apaul', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
+(5, 'lblot', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
+(6, 'afuchs', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
+(7, 'agranger', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
+(8, 'jwang', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Eleve'),
+(9, 'ilecomte', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Parent'),
+(10, 'edescamps', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Parent'),
+(11, 'mdescamps_parent', 'mdescamps', 'Parent'),
 (12, 'jgrondin', 'jgrondin', 'Parent'),
 (13, 'ngrondin', 'ngrondin', 'Parent'),
 (14, 'fpaul', 'fpaul', 'Parent'),
@@ -490,7 +468,7 @@ INSERT INTO `Utilisateur` (`idUtilisateur`, `login`, `mdp`, `role`) VALUES
 (21, 'mgranger', 'mgranger', 'Parent'),
 (22, 'dwang', 'dwang', 'Parent'),
 (23, 'cwang', 'cwang', 'Parent'),
-(24, 'gazzuro', 'gazzuro', 'Professeur'),
+(24, 'gazzuro', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Professeur'),
 (25, 'jweiss', 'jweiss', 'Professeur'),
 (26, 'sramon', 'sramon', 'Professeur'),
 (27, 'ldoucet', 'ldoucet', 'Professeur'),
@@ -505,149 +483,4 @@ INSERT INTO `Utilisateur` (`idUtilisateur`, `login`, `mdp`, `role`) VALUES
 (36, 'tceccaci', 'tceccaci', 'Professeur'),
 (37, 'jbrown', 'jbrown', 'Professeur'),
 (38, 'asimon', 'asimon', 'Professeur'),
-(39, 'prof_demo', 'demoProf', 'Professeur');
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `AppClasse`
---
-ALTER TABLE `AppClasse`
-  ADD PRIMARY KEY (`idAppClasse`);
-
---
--- Index pour la table `AppEleve`
---
-ALTER TABLE `AppEleve`
-  ADD PRIMARY KEY (`idAppEleve`);
-
---
--- Index pour la table `Classe`
---
-ALTER TABLE `Classe`
-  ADD PRIMARY KEY (`idClasse`);
-
---
--- Index pour la table `Controles`
---
-ALTER TABLE `Controles`
-  ADD PRIMARY KEY (`idControle`);
-
---
--- Index pour la table `Eleves`
---
-ALTER TABLE `Eleves`
-  ADD PRIMARY KEY (`idEleve`);
-
---
--- Index pour la table `Enseignement`
---
-ALTER TABLE `Enseignement`
-  ADD PRIMARY KEY (`idEnseignement`);
-
---
--- Index pour la table `Matiere`
---
-ALTER TABLE `Matiere`
-  ADD PRIMARY KEY (`idMatiere`);
-
---
--- Index pour la table `Notes`
---
-ALTER TABLE `Notes`
-  ADD PRIMARY KEY (`idNote`);
-
---
--- Index pour la table `Parents`
---
-ALTER TABLE `Parents`
-  ADD PRIMARY KEY (`idParent`);
-
---
--- Index pour la table `Profs`
---
-ALTER TABLE `Profs`
-  ADD PRIMARY KEY (`idProf`);
-
---
--- Index pour la table `Utilisateur`
---
-ALTER TABLE `Utilisateur`
-  ADD PRIMARY KEY (`idUtilisateur`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `AppClasse`
---
-ALTER TABLE `AppClasse`
-  MODIFY `idAppClasse` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT pour la table `AppEleve`
---
-ALTER TABLE `AppEleve`
-  MODIFY `idAppEleve` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
-
---
--- AUTO_INCREMENT pour la table `Classe`
---
-ALTER TABLE `Classe`
-  MODIFY `idClasse` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT pour la table `Controles`
---
-ALTER TABLE `Controles`
-  MODIFY `idControle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT pour la table `Eleves`
---
-ALTER TABLE `Eleves`
-  MODIFY `idEleve` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT pour la table `Enseignement`
---
-ALTER TABLE `Enseignement`
-  MODIFY `idEnseignement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT pour la table `Matiere`
---
-ALTER TABLE `Matiere`
-  MODIFY `idMatiere` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT pour la table `Notes`
---
-ALTER TABLE `Notes`
-  MODIFY `idNote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT pour la table `Parents`
---
-ALTER TABLE `Parents`
-  MODIFY `idParent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT pour la table `Profs`
---
-ALTER TABLE `Profs`
-  MODIFY `idProf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT pour la table `Utilisateur`
---
-ALTER TABLE `Utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+(39, 'prof_demo', '$2y$10$QpZpX3w9yq6q7v4Vf0Y6lOZKnP3XqKX9k8zN6r0zYy3VqN9rZp3qC', 'Professeur');

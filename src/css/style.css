@@ -125,6 +125,7 @@ body {
     display: flex;
     flex-direction: column;
     line-height: 1.54;
+    color: var(--color);
 
     header > div, header > nav, footer > div, main {
         width: 100%;
