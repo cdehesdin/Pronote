@@ -1,7 +1,9 @@
 # Pronote
+
 Développement d'un site web __inspiré de Pronote__ (limitée aux fonctionnalités de gestion des notes) dans le cadre du projet de NSI 2024, effectué lors de la dernière année au lycée Descartes de Montigny.
 
 ## Fonctionnalités implémentées
+
 - **Élèves :**
     - Consultation de leurs informations personnelles
     - Accès à leur relevé de notes, trié par date (notes les plus récentes) ou par matière
@@ -22,6 +24,3 @@ Développement d'un site web __inspiré de Pronote__ (limitée aux fonctionnalit
 |-----------|--------------------|------------------|
 | _id :_ eleve_demo| _id :_ parent_demo | _id :_ prof_demo |
 | _mdp :_ demoEleve | _mdp :_ demoParent | _mdp :_ demoProf |
-
-## Schéma de la base de données
-![Image schéma de la base de données](./assets/img/bdd_sql.png)
