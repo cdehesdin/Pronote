@@ -7,7 +7,7 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php if (isset($title) && $title != "Accueil") echo $title . " •"; ?> ETEAM</title>
+    <title><?php if (isset($title) && $title != "Accueil") echo $title . " •"; ?> Pronote</title>
     <link rel="icon" href="./src/img/logo.jpeg">
 
     <!-- Font awesome -->
@@ -47,10 +47,10 @@ session_start();
         </div>
 
         <!-- Navbar -->
-        <nav class="d-flex flex-lg-row justify-content-between align-items-center">
-            <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="x-navbar-items" aria-labelledby="x-navbar-items-label">
+        <nav class="d-flex flex-md-row justify-content-between align-items-center">
+            <div class="offcanvas-md offcanvas-start" tabindex="-1" id="x-navbar-items" aria-labelledby="x-navbar-items-label">
                 <div class="offcanvas-body" data-bs-theme="dark">
-                    <button type="button" class="btn-close d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="#x-navbar-items"  aria-label="Close"></button>
+                    <button type="button" class="btn-close d-md-none" data-bs-dismiss="offcanvas" data-bs-target="#x-navbar-items"  aria-label="Close"></button>
                     <div class="x-link">
                         <!-- Page -->
                         <div class="<?php if (isset($title) && $title == "Accueil") echo "x-active"; ?>">

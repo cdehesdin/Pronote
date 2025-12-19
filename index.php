@@ -5,18 +5,17 @@ require_once __DIR__ . '/src/php/config.php';
 $title = !isset($_SESSION['login']) ? "Connexion" : "Accueil";
 $error = null;
 
-if (!isset($_SESSION['login']) && isset($_POST['login'], $_POST['mdp'], $_POST['role'])) {
+if (!isset($_SESSION['login']) && isset($_POST['login'], $_POST['mdp'])) {
 
     $login = trim($_POST['login']);
     $mdp   = $_POST['mdp'];
-    $role  = $_POST['role'];
 
     $stmt = $link->prepare(
         "SELECT idUtilisateur, login, mdp, role 
          FROM Utilisateur 
-         WHERE login = ? AND role = ?"
+         WHERE login = ?"
     );
-    $stmt->bind_param("ss", $login, $role);
+    $stmt->bind_param("s", $login);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -113,18 +112,6 @@ if (!isset($_SESSION['login']) && isset($_POST['login'], $_POST['mdp'], $_POST['
             <?php endif; ?>
 
             <form method="post">
-
-                <div class="mb-3 text-center">
-                    <label class="me-2">
-                        <input type="radio" name="role" value="Eleve" checked> Élève
-                    </label>
-                    <label class="me-2">
-                        <input type="radio" name="role" value="Parent"> Parent
-                    </label>
-                    <label>
-                        <input type="radio" name="role" value="Professeur"> Professeur
-                    </label>
-                </div>
 
                 <div class="form-floating mb-3">
                     <input class="form-control" name="login" required>
