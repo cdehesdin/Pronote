@@ -56,7 +56,7 @@ session_start();
                         <div class="<?php if (isset($title) && $title == "Accueil") echo "x-active"; ?>">
                             <a href="."><i class="fa-solid fa-house me-2"></i>Accueil</a>
                         </div>
-                        <div class="<?php if (isset($title) && $title == "Notes") echo "x-active"; ?>">
+                        <div class="<?php if (isset($title) && $title == "Mes notes") echo "x-active"; ?>">
                             <a href="./notes.php"><i class="fa-solid fa-graduation-cap me-2"></i>Mes notes</a>
                         </div>
                         <div class="<?php if (isset($title) && $title == "Relevé de notes") echo "x-active"; ?>">
