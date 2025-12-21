@@ -1,0 +1,103 @@
+
+/*============= Saisie des notes ===============*/
+.table-saisie thead th {padding: 3px 2px;}
+.table-saisie tbody {border-left: 1px solid #c6c6c6;}
+.table-saisie tbody tr:last-child {border-bottom: 1px solid #c6c6c6;}
+.table-saisie tbody td:not(.table-saisie tbody .enter-des-notes) {
+    border-top: 1px solid #c6c6c6;
+    border-right: 1px solid #c6c6c6;
+    padding: 5px 3px;
+    font-weight: 200;}
+.table-saisie tbody .enter-des-notes {
+    padding: 0;
+    border-top: 1px solid #c6c6c6;
+    border-right: 1px solid #c6c6c6;}
+.table-saisie .note-elem {text-align: end;}
+.table-saisie tbody tr:nth-child(even) {background-color: #f8f8f8;}
+.table-saisie tbody tr .devoir:not(.table-saisie tbody tr:nth-child(even) .devoir) {background-color: #ededed;}
+.table-saisie tbody tr:nth-child(even) .devoir {background-color: #e2e2e2;}
+.table-saisie tbody tr .enter-note {
+    cursor: pointer;
+    border: 0px;
+    padding: 5px 3px;
+    background-color: inherit;
+    width: 57px;
+    text-align: end;}
+.custom-popover {
+    --bs-popover-max-width: 200px;
+    --bs-popover-border: 0.4px solid var(--main5);
+    --bs-popover-border-radius: 0px;
+    --bs-popover-font-size: 0.8rem;
+    --bs-popover-body-padding-x: 0.4rem;
+    --bs-popover-body-padding-y: 0.15rem;
+    --bs-popover-body-color: var(--main5);}
+.table-saisie tbody tr .enter-des-notes input:focus {
+    cursor: text;
+    outline: none;
+    padding: 4px 3px;
+    border: 1px solid var(--main4);}
+.listEleve .info-note {
+    margin: 5px;
+    font-style: italic;
+    font-size: 0.7rem;
+    line-height: 13px;}
+.listEleve .info-note .caract {
+    padding-left: 9px;
+    font-weight: 800;}
+.table-saisie .modifier-devoir {
+    font-weight: 600;
+    font-style: italic;
+    background-color: inherit;
+    color: #000;
+    margin: 0;
+    padding: 4px 0 4.8px;
+    border: 0;
+    font-size: inherit;
+    min-width: 57px;
+    text-align: center;
+    border-radius: 0px;}
+.table-saisie .modifier-devoir:active {
+    background-color: inherit;
+    color: #000;}
+.modal-devoir .devoir-dialog {font-size: 0.9rem;}
+.modal-devoir .text-dialog {
+    color: var(--main5);
+    width: 120px;}
+.modal-devoir .devoir-saisie {width: calc(100% - 120px);}
+.modal-devoir .devoir-saisie input {
+    cursor: pointer;
+    border: 1px solid var(--main3);
+    background-color: inherit;
+    padding: 0px 4px;
+    border-radius: 3px;
+    text-align: start;}
+.modal-devoir .devoir-saisie input:focus {
+    cursor: text;
+    outline: none;
+    text-align: start;
+    padding: 0px 4px;
+    border: 1px solid var(--main3);}
+.modal-devoir .footer-dialog {text-align: end;}
+.modal-devoir .footer-dialog input, .modal-devoir .delete-button-devoir {
+    background-color: #caefe1!important;
+    color: #000!important;
+    font-size: 0.92rem!important;
+    border-radius: 12px!important;
+    border-color: #caefe1!important;
+    padding: 3px 9px!important;
+    margin-right: 2px!important;}
+.modal-devoir .footer-dialog #footer-cree {
+    background-color: var(--main3)!important;
+    color: #fff!important;
+    font-size: 0.92rem!important;
+    border-radius: 12px!important;
+    border-color: var(--main3)!important;
+    padding: 3px 9px!important;}
+.modal-devoir .footer-dialog input:hover, .modal-devoir .footer-dialog #footer-cree:hover, .modal-devoir .delete-button-devoir:hover {
+    background-color: var(--main4)!important;
+    color: #fff!important;
+    font-size: 0.92rem!important;
+    border-radius: 12px!important;
+    border-color: var(--main4)!important;
+    padding: 3px 9px!important;}
+.modal-devoir .nom-matiere-devoir {text-transform: uppercase;}

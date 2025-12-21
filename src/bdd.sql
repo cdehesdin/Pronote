@@ -1,41 +1,20 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Hôte : localhost
--- Généré le : ven. 19 déc. 2025 à 09:08
--- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.2.4
+-- Clément DEHESDIN
+-- Requête SQL de la base de données du projet `pronote`
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Base de données : `pronote`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `AppClasse`
+-- Table `AppClasse`
 --
 
 CREATE TABLE `AppClasse` (
-  `idAppClasse` int(11) NOT NULL,
+  `idAppClasse` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `idEnseignement` int(11) NOT NULL,
   `app` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `AppClasse`
---
 
 INSERT INTO `AppClasse` (`idAppClasse`, `idEnseignement`, `app`) VALUES
 (1, 1, NULL),
@@ -71,22 +50,17 @@ INSERT INTO `AppClasse` (`idAppClasse`, `idEnseignement`, `app`) VALUES
 (31, 31, NULL),
 (32, 32, NULL);
 
--- --------------------------------------------------------
 
 --
--- Structure de la table `AppEleve`
+-- Table `AppEleve`
 --
 
 CREATE TABLE `AppEleve` (
-  `idAppEleve` int(11) NOT NULL,
+  `idAppEleve` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `idEnseignement` int(11) NOT NULL,
   `idEleve` int(11) NOT NULL,
   `app` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `AppEleve`
---
 
 INSERT INTO `AppEleve` (`idAppEleve`, `idEnseignement`, `idEleve`, `app`) VALUES
 (1, 1, 1, NULL),
@@ -154,22 +128,17 @@ INSERT INTO `AppEleve` (`idAppEleve`, `idEnseignement`, `idEleve`, `app`) VALUES
 (63, 9, 8, NULL),
 (64, 26, 8, NULL);
 
--- --------------------------------------------------------
 
 --
 -- Structure de la table `Classe`
 --
 
 CREATE TABLE `Classe` (
-  `idClasse` int(11) NOT NULL,
+  `idClasse` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `PPID` int(11) NOT NULL,
   `appreciationPP` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `Classe`
---
 
 INSERT INTO `Classe` (`idClasse`, `nom`, `PPID`, `appreciationPP`) VALUES
 (1, '3A', 4, NULL),
@@ -177,23 +146,18 @@ INSERT INTO `Classe` (`idClasse`, `nom`, `PPID`, `appreciationPP`) VALUES
 (3, '4A', 12, NULL),
 (4, '4B', 10, NULL);
 
--- --------------------------------------------------------
 
 --
--- Structure de la table `Controles`
+-- Table `Controles`
 --
 
 CREATE TABLE `Controles` (
-  `idControle` int(11) NOT NULL,
+  `idControle` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `idEnseignement` int(11) NOT NULL,
   `nomControle` varchar(255) NOT NULL,
   `coefficient` float NOT NULL,
   `dates` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `Controles`
---
 
 INSERT INTO `Controles` (`idControle`, `idEnseignement`, `nomControle`, `coefficient`, `dates`) VALUES
 (1, 1, 'Évaluation sur les suites numériques', 1, '2023-05-23'),
@@ -211,14 +175,13 @@ INSERT INTO `Controles` (`idControle`, `idEnseignement`, `nomControle`, `coeffic
 (13, 27, 'Test 5', 2, '2024-05-01'),
 (14, 12, 'Test 8', 0.25, '2024-04-09');
 
--- --------------------------------------------------------
 
 --
--- Structure de la table `Eleves`
+-- Table `Eleves`
 --
 
 CREATE TABLE `Eleves` (
-  `idEleve` int(11) NOT NULL,
+  `idEleve` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `idUtilisateur` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
@@ -232,10 +195,6 @@ CREATE TABLE `Eleves` (
   `respLegal2Id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Déchargement des données de la table `Eleves`
---
-
 INSERT INTO `Eleves` (`idEleve`, `idUtilisateur`, `nom`, `prenom`, `sexe`, `dateNaissance`, `adresse`, `telephone`, `email`, `idClasse`, `respLegal1Id`, `respLegal2Id`) VALUES
 (1, 1, 'DELHAYE', 'Tony', 'G', '2009-01-21', '2 avenue Philippine Diaz, Grenier 19414, France', '02 66 07 95 23', NULL, 1, 1, NULL),
 (2, 2, 'DESCAMPS', 'Manon', 'F', '2009-04-01', '42 place Nathalie Gauthier, Dos Santos 48994, France', NULL, NULL, 3, 2, 3),
@@ -246,21 +205,16 @@ INSERT INTO `Eleves` (`idEleve`, `idUtilisateur`, `nom`, `prenom`, `sexe`, `date
 (7, 7, 'GRANGER', 'Augustin', 'G', '2010-09-26', '7 rue de Duhamel, Mallet 75153, France', NULL, NULL, 4, 12, 13),
 (8, 8, 'WANG', 'Julien', 'G', '2010-07-12', '61 rue Alphonse Marin, Roy-sur-Fouquet 25727, France', NULL, NULL, 3, 14, 15);
 
--- --------------------------------------------------------
 
 --
--- Structure de la table `Enseignement`
+-- Table `Enseignement`
 --
 
 CREATE TABLE `Enseignement` (
-  `idEnseignement` int(11) NOT NULL,
+  `idEnseignement` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `idProf` int(11) NOT NULL,
   `idClasse` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `Enseignement`
---
 
 INSERT INTO `Enseignement` (`idEnseignement`, `idProf`, `idClasse`) VALUES
 (1, 1, 1),
@@ -296,21 +250,16 @@ INSERT INTO `Enseignement` (`idEnseignement`, `idProf`, `idClasse`) VALUES
 (31, 16, 1),
 (32, 16, 4);
 
--- --------------------------------------------------------
 
 --
--- Structure de la table `Matiere`
+-- Table `Matiere`
 --
 
 CREATE TABLE `Matiere` (
-  `idMatiere` int(11) NOT NULL,
+  `idMatiere` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `Matiere`
---
 
 INSERT INTO `Matiere` (`idMatiere`, `nom`, `description`) VALUES
 (1, 'Maths', 'Mathématiques'),
@@ -322,22 +271,17 @@ INSERT INTO `Matiere` (`idMatiere`, `nom`, `description`) VALUES
 (7, 'EPS', 'Éducation physique et sportive'),
 (8, 'HG', 'Histoire Géographie');
 
--- --------------------------------------------------------
 
 --
--- Structure de la table `Notes`
+-- Table `Notes`
 --
 
 CREATE TABLE `Notes` (
-  `idNote` int(11) NOT NULL,
+  `idNote` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `idEleve` int(11) NOT NULL,
   `idControle` int(11) NOT NULL,
   `note` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `Notes`
---
 
 INSERT INTO `Notes` (`idNote`, `idEleve`, `idControle`, `note`) VALUES
 (1, 1, 1, '13'),
@@ -369,14 +313,13 @@ INSERT INTO `Notes` (`idNote`, `idEleve`, `idControle`, `note`) VALUES
 (27, 1, 14, '20'),
 (28, 4, 14, NULL);
 
--- --------------------------------------------------------
 
 --
--- Structure de la table `Parents`
+-- Table `Parents`
 --
 
 CREATE TABLE `Parents` (
-  `idParent` int(11) NOT NULL,
+  `idParent` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `idUtilisateur` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
@@ -386,10 +329,6 @@ CREATE TABLE `Parents` (
   `telephone` varchar(14) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `Parents`
---
 
 INSERT INTO `Parents` (`idParent`, `idUtilisateur`, `nom`, `prenom`, `sexe`, `dateNaissance`, `adresse`, `telephone`, `email`) VALUES
 (1, 9, 'LECOMTE', 'Isabelle', 'F', '1974-01-05', '2 avenue Philippine Diaz, Grenier 19414, France', NULL, NULL),
@@ -408,14 +347,13 @@ INSERT INTO `Parents` (`idParent`, `idUtilisateur`, `nom`, `prenom`, `sexe`, `da
 (14, 22, 'WANG', 'Daniel', 'M', '1977-10-22', '61 rue Alphonse Marin, Roy-sur-Fouquet 25727, France', '07 68 98 55 35', NULL),
 (15, 23, 'WANG', 'Christine', 'F', '1979-10-03', '61 rue Alphonse Marin, Roy-sur-Fouquet 25727, France', NULL, NULL);
 
--- --------------------------------------------------------
 
 --
--- Structure de la table `Profs`
+-- Table `Profs`
 --
 
 CREATE TABLE `Profs` (
-  `idProf` int(11) NOT NULL,
+  `idProf` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `idUtilisateur` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
@@ -426,10 +364,6 @@ CREATE TABLE `Profs` (
   `telephone` varchar(14) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `Profs`
---
 
 INSERT INTO `Profs` (`idProf`, `idUtilisateur`, `nom`, `prenom`, `idMatiere`, `sexe`, `dateNaissance`, `adresse`, `telephone`, `email`) VALUES
 (1, 24, 'AZZURRO', 'Giovanni', 1, 'M', '1993-07-16', '75 avenue Tanguy, Leclercdan 90660, France', NULL, NULL),
@@ -449,22 +383,17 @@ INSERT INTO `Profs` (`idProf`, `idUtilisateur`, `nom`, `prenom`, `idMatiere`, `s
 (15, 38, 'SIMON', 'Amandine', 8, 'F', '1973-06-01', '68 rue Philippine Pottier, Renaud 85637, France', '09 83 27 06 62', NULL),
 (16, 39, 'LACAZE', 'Hugo', 8, 'M', '1981-12-01', '80 rue Garnier, Gregoire 10825, France', '04 99 43 46 19', NULL);
 
--- --------------------------------------------------------
 
 --
--- Structure de la table `Utilisateur`
+-- Table `Utilisateur`
 --
 
 CREATE TABLE `Utilisateur` (
-  `idUtilisateur` int(11) NOT NULL,
+  `idUtilisateur` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `login` varchar(100) NOT NULL,
   `mdp` varchar(255) NOT NULL,
   `role` enum('Eleve','Parent','Professeur') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `Utilisateur`
---
 
 INSERT INTO `Utilisateur` (`idUtilisateur`, `login`, `mdp`, `role`) VALUES
 (1, 'eleve_demo', '$2y$10$Fu3djB.tdWL/XRXNXWRN0.OEErFKdASIl8Cb2l.CdTYcl7zxmKSNq', 'Eleve'),
@@ -507,28 +436,5 @@ INSERT INTO `Utilisateur` (`idUtilisateur`, `login`, `mdp`, `role`) VALUES
 (38, 'asimon', '$2y$10$OLVnEB873ZFh71q3AoCaU.g0ea2vG/si1TtIv9TW7Rqhc.2R0yHqK', 'Professeur'),
 (39, 'prof_demo', '$2y$10$CL/Q0bh6tDoXHzRWDUP1Ueyh64YVHkE1k2VC5bFCYi3A.x5OpW/H.', 'Professeur');
 
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `Utilisateur`
---
 ALTER TABLE `Utilisateur`
-  ADD PRIMARY KEY (`idUtilisateur`),
   ADD UNIQUE KEY `uniq_login` (`login`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `Utilisateur`
---
-ALTER TABLE `Utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
