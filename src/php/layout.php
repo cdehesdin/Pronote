@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -47,25 +45,37 @@ session_start();
         </div>
 
         <!-- Navbar -->
-        <nav class="d-flex flex-md-row justify-content-between align-items-center">
-            <div class="offcanvas-md offcanvas-start" tabindex="-1" id="x-navbar-items" aria-labelledby="x-navbar-items-label">
-                <div class="offcanvas-body" data-bs-theme="dark">
-                    <button type="button" class="btn-close d-md-none" data-bs-dismiss="offcanvas" data-bs-target="#x-navbar-items"  aria-label="Close"></button>
-                    <div class="x-link">
-                        <!-- Page -->
-                        <div class="<?php if (isset($title) && $title == "Accueil") echo "x-active"; ?>">
-                            <a href="."><i class="fa-solid fa-house me-2"></i>Accueil</a>
-                        </div>
-                        <div class="<?php if (isset($title) && ($title == "Mes notes" || $title == "Les notes")) echo "x-active"; ?>">
-                            <a href="./notes.php"><i class="fa-solid fa-graduation-cap me-2"></i>Mes notes</a>
-                        </div>
-                        <div class="<?php if (isset($title) && $title == "Relevé de notes") echo "x-active"; ?>">
-                            <a href="./releve.php"><i class="fa-solid fa-user-graduate me-2"></i>Relevé de notes</a>
+        <?php if (isset($_SESSION['login'])): ?>
+            <nav class="d-flex flex-md-row justify-content-between align-items-center">
+                <div class="offcanvas-md offcanvas-start" tabindex="-1" id="x-navbar-items" aria-labelledby="x-navbar-items-label">
+                    <div class="offcanvas-body" data-bs-theme="dark">
+                        <button type="button" class="btn-close d-md-none" data-bs-dismiss="offcanvas" data-bs-target="#x-navbar-items"  aria-label="Close"></button>
+                        <div class="x-link">
+                            <!-- Page -->
+                            <div class="<?php if (isset($title) && $title == "Accueil") echo "x-active"; ?>">
+                                <a href="."><i class="fa-solid fa-house me-2"></i>Accueil</a>
+                            </div>
+                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == "Eleve"): ?>
+                                <div class="<?php if (isset($title) && ($title == "Mes notes")) echo "x-active"; ?>">
+                                    <a href="./notes.php"><i class="fa-solid fa-graduation-cap me-2"></i>Mes notes</a>
+                                </div>
+                            <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] == "Parent"): ?>
+                                <div class="<?php if (isset($title) && ($title == "Les notes")) echo "x-active"; ?>">
+                                    <a href="./notes.php"><i class="fa-solid fa-graduation-cap me-2"></i>Les notes</a>
+                                </div>
+                            <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] == "Professeur"): ?>
+                                <div class="<?php if (isset($title) && ($title == "Saisie des notes")) echo "x-active"; ?>">
+                                    <a href="./notes.php"><i class="fa-solid fa-graduation-cap me-2"></i>Saisie des notes</a>
+                                </div>
+                            <?php endif; ?>
+                            <div class="<?php if (isset($title) && $title == "Relevé de notes") echo "x-active"; ?>">
+                                <a href="./releve.php"><i class="fa-solid fa-user-graduate me-2"></i>Relevé de notes</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        <?php endif; ?>
     </header>
 
     <!-------------------------------------->
