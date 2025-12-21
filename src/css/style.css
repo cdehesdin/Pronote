@@ -137,7 +137,13 @@ body {
     main {padding: 16px 32px;}
 }
 
-section {
-    font-weight: 300;
-    font-size: 16px;
+#x-password {
+    position: relative;
+
+    .x-view-password {
+        position: absolute;
+        right: 8px;
+        top: 24px;
+        background-color: var(--background-color);
+    }
 }

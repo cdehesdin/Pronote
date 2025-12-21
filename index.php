@@ -102,37 +102,42 @@ if (!isset($_SESSION['login']) && isset($_POST['login'], $_POST['mdp'])) {
 <?php ob_start(); ?>
 
 <?php if (!isset($_SESSION['login'])): ?>
+    <script src="./src/js/password.js" defer></script>
+<?php endif; ?>
 
-<div class="container">
-    <div class="card w-50 p-3 position-absolute top-50 start-50 translate-middle">
-        <div class="card-body connexion">
+<?php $style_script = ob_get_clean(); ?>
 
-            <?php if ($error): ?>
-                <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
-            <?php endif; ?>
+<?php ob_start(); ?>
 
-            <form method="post">
+<?php if (!isset($_SESSION['login'])): ?>
+    <div class="container">
+        <div class="card w-50 p-3 position-absolute top-50 start-50 translate-middle">
+            <div class="card-body connexion">
 
-                <div class="form-floating mb-3">
-                    <input class="form-control" name="login" required>
-                    <label>Identifiant</label>
-                </div>
+                <?php if ($error): ?>
+                    <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+                <?php endif; ?>
 
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" name="mdp" required>
-                    <label>Mot de passe</label>
-                </div>
+                <form method="post">
 
-                <button class="btn btn-primary w-100">Connexion</button>
-            </form>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" name="login" required>
+                        <label>Identifiant</label>
+                    </div>
+
+                    <div id="x-password" class="form-floating mb-3">
+                        <input type="password" class="form-control" name="mdp" id="x-mdp" required>
+                        <label>Mot de passe </label>
+                        <div class="x-view-password" onclick="viewPassword(event, '#x-mdp')"><i class="fa-solid fa-eye"></i></div>
+                    </div>
+                    
+                    <button class="btn btn-primary w-100">Connexion</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
 <?php else: ?>
-
-<h2>Bienvenue <?= htmlspecialchars($_SESSION['login']) ?></h2>
-
+    <h2>Bienvenue <?= htmlspecialchars($_SESSION['login']) ?></h2>
 <?php endif; ?>
 
 <?php

@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('form-tri-notes');
+    const form_eleve = document.getElementById('form-tri-eleve');
+    const selectEnfant = document.getElementById('select-enfant');
     const listeNotes = document.getElementById('liste-notes');
 
-    // Fonction pour envoyer le formulaire en AJAX
     const envoyerForm = (formData) => {
         fetch('./src/php/ajax_lstNotes.php', {
             method: 'POST',
@@ -15,22 +16,43 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(html => {
             listeNotes.innerHTML = html;
         })
-        .catch(error => {
-            console.error(error);
+        .catch(() => {
             listeNotes.innerHTML = '<li>Erreur de chargement</li>';
         });
     };
 
-    // Envoi lors du changement du formulaire
+    // Quand on change d'élève
+    if (selectEnfant && form_eleve) {
+        selectEnfant.addEventListener('change', () => {
+            document.getElementById('chronologique').checked = true;
+
+            const formData = new FormData(form_eleve);
+            formData.append('ordres', 'chronologique');
+            formData.append('enfants', selectEnfant.value);
+
+            envoyerForm(formData);
+
+            document.getElementById('resultat').innerHTML = "Sélectionnez un devoir";
+        });
+    }
+
+    // Quand on change l'ordre (chronologique / matière)
     form.addEventListener('change', () => {
         const formData = new FormData(form);
+
+        // Si tu as aussi besoin de l'élève sélectionné
+        if (selectEnfant && selectEnfant.value) {
+            formData.append('enfants', selectEnfant.value);
+        }
+
         envoyerForm(formData);
+
+        document.getElementById('resultat').innerHTML = "Sélectionnez un devoir";
     });
 
-    // Envoi initial par défaut (chronologique)
-    const defaultFormData = new FormData();
-    defaultFormData.append('ordres', 'chronologique');
-    envoyerForm(defaultFormData);
+    // Chargement initial
+    const formData = new FormData(form);
+    envoyerForm(formData);
 });
 
 document.addEventListener('DOMContentLoaded', () => {

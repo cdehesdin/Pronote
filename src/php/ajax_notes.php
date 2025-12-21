@@ -2,6 +2,11 @@
 session_start();
 require_once __DIR__ . '/config.php';
 
+if (!isset($_SESSION['role']) || ($_SESSION['role'] != "Eleve" && $_SESSION['role'] != "Parent")) {
+    header('Location: ./notes.php');
+    exit;
+}
+
 $IdEleve     = $_SESSION['id'];
 $ClasseEleve = $_SESSION['classe'];
 
@@ -191,7 +196,7 @@ $stats = statsSimples($notesClasse);
 <div class="d-flex pb-3">
     <div class="column-note-icon"><span class="logo-note">&#8530;</span></div>
     <div class="titre-de-la-note mt-2">
-        <?= $listMatiere[$_POST['matieres']][1] ?>
+        <span class="descriptif-notes-matiere"><?= $listMatiere[$_POST['matieres']][1] ?></span>
     </div>
 </div>
 
@@ -216,6 +221,29 @@ $stats = statsSimples($notesClasse);
 
     <div class="description-note">Max : <?= number_format($stats['max'],2,',',' ') ?></div>
     <div class="description-note">Min : <?= number_format($stats['min'],2,',',' ') ?></div>
+
+    <?php
+    $sqlNbNotes = "
+        SELECT Notes.note
+        FROM Notes
+        JOIN Controles ON Notes.idControle = Controles.idControle
+        JOIN Enseignement ON Controles.idEnseignement = Enseignement.idEnseignement
+        JOIN Profs ON Enseignement.idProf = Profs.idProf
+        JOIN Matiere ON Profs.idMatiere = Matiere.idMatiere
+        WHERE Matiere.nom = '{$_POST['matieres']}'
+        AND Notes.idEleve = $IdEleve
+    ";
+    $reqNbNotes = mysqli_query($link, $sqlNbNotes);
+
+    $nbNotes = 0;
+    while ($n = mysqli_fetch_assoc($reqNbNotes)) {
+        if (noteValide($n['note'])) {
+            $nbNotes++;
+        }
+    }
+    ?>
+    <div class="description-note">Nombre de notes : <?= $nbNotes ?></div>
+
 </div>
 
 <?php endif; ?>

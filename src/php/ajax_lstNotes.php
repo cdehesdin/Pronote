@@ -6,8 +6,8 @@ error_reporting(E_ALL);
 session_start();
 require_once __DIR__ . '/config.php';
 
-if (!isset($_SESSION['login'])) {
-    http_response_code(403);
+if (!isset($_SESSION['role']) || ($_SESSION['role'] != "Eleve" && $_SESSION['role'] != "Parent")) {
+    header('Location: ./notes.php');
     exit;
 }
 
@@ -18,13 +18,13 @@ if (!isset($_SESSION['login'])) {
 $IdEleve     = $_SESSION['id'];
 $ClasseEleve = $_SESSION['classe'];
 
-if (!isset($_GET['enfants'])) {
-    $_GET['enfants'] = 0;
-}
+if ($_SESSION['role'] == 'Parent') {
+    if (!isset($_POST['enfants'])) {
+        $_POST['enfants'] = 0;
+    }
 
-if ($_SESSION['role'] === 'Parent') {
-    $IdEleve     = $_SESSION['idEleve'][$_GET['enfants']];
-    $ClasseEleve = $_SESSION['classe'][$_GET['enfants']];
+    $IdEleve     = $_SESSION['idEleve'][$_POST['enfants']];
+    $ClasseEleve = $_SESSION['classe'][$_POST['enfants']];
 }
 
 $ordre = $_POST['ordres'] ?? 'chronologique';
@@ -112,12 +112,20 @@ function moyennesClasse(mysqli $link, int $idClasse): array {
 ======================= */
 
 $moyenneClasse = moyennesClasse($link, $ClasseEleve);
+
+// Moyenne de classe par matière
+$moyenneParMatiere = [];
+foreach ($moyenneClasse as $matiere => $moyennesEleves) {
+    $moyenneParMatiere[$matiere] =
+        array_sum($moyennesEleves) / count($moyennesEleves);
+}
 ?>
 
 <!-- =======================
      AFFICHAGE
 ======================= -->
 
+<ul>
 <?php if ($ordre === "chronologique"): ?>
 
 <?php
@@ -281,3 +289,34 @@ Moyenne de la classe :
 
 
 <?php endif; ?>
+</ul>
+<div class="moyenne-generale">
+                    <div class="moyenne-generale-sous-block">
+                        <div class="d-flex w-100 justify-content-between">
+                            <?php
+                                $sommeNote = $sommeNoteNbre = NULL;
+                                foreach ($moyenneClasse as $matiereMoyenneEleve => $moyenneEleve) {
+                                    foreach ($moyenneEleve as $idMoyenneEleve => $noteMoyenneEleve) {
+                                        if ($idMoyenneEleve == $IdEleve) {
+                                            $sommeNote += $noteMoyenneEleve;
+                                            $sommeNoteNbre ++;
+                                    }
+                                }
+                            }
+                            ?>
+                            <span class="nom-moyenne-eleve"> Moyenne générale élève : </span>
+                            <span class="nom-moyenne-eleve"> <?php if (gettype($sommeNote) != 'NULL') {echo number_format($sommeNote / $sommeNoteNbre, 2, ',', ' ');} else {echo 'N.Not';} ?> </span>
+                        </div>
+                        <div class="d-flex w-100 justify-content-between">
+                            <?php
+                            $sommeNote = $sommeNoteNbre = NULL;
+                            foreach ($moyenneParMatiere as $moyenneEleve) {
+                                $sommeNote += $moyenneEleve;
+                                $sommeNoteNbre ++;
+                            }
+                            ?>
+                            <span class="nom-moyenne-classe"> Moyenne générale classe : </span>
+                            <span class="nom-moyenne-classe"> <?php if (gettype($sommeNote) != 'NULL') {echo number_format($sommeNote / $sommeNoteNbre, 2, ',', ' ');} else {echo 'N.Not';} ?> </span>
+                        </div>
+                    </div>
+                </div>
