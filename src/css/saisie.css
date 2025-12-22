@@ -1,5 +1,9 @@
 
 /*============= Saisie des notes ===============*/
+.table-saisie td:first-child,
+.table-saisie th:first-child {
+  min-width: 135px;
+}
 .table-saisie thead th {padding: 3px 2px;}
 .table-saisie tbody {border-left: 1px solid #c6c6c6;}
 .table-saisie tbody tr:last-child {border-bottom: 1px solid #c6c6c6;}

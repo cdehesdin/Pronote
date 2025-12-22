@@ -151,8 +151,8 @@ $title = getPageTitle();
     <?php endif; ?>
 <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] == "Professeur"): ?>
     <div class="choice-bar d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center">
-            <div class="choice-title"> Saisie des notes </div>
+        <div class="d-flex align-items-center mb-3">
+            <div class="choice-title"> Choisir une classe : </div>
             <div class="dropdown d-inline ms-2">
                 <form id="classeForm">
                     <select class="form-select form-select-sm" name="classe" id="classe" onchange="submitClasse()">
