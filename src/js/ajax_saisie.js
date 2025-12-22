@@ -48,4 +48,3 @@ function updateNote(idEleve, idControle, note) {
         console.error('Erreur lors de la mise à jour de la note:', error);
     });
 }
-

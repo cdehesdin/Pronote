@@ -52,15 +52,10 @@ $nomMatiere = fetch_single_result($queryNomMatiere, $link)['description'];
 ?>
 
 <table class="table-saisie">
-    <col style="min-width: 171px;">
-    <col style="min-width: 62px;">
-    <?php for ($i = 0; $i < $nbreDevoirs; $i++): ?>
-        <col style="min-width: 57px;">
-    <?php endfor; ?>
     <thead>
         <tr>
             <th colspan="2" style="text-align: left;">
-                <button type="button" class="btn btn-primary btn-sm ms-1" data-bs-toggle="modal" data-bs-target="#creeDevoir" style="padding: 0.03rem 0.4rem; background-color: var(--main3); border-color: var(--main3); border-radius: 15px; font-size: 0.75rem; font-weight: 800;">
+                <button type="button" class="btn btn-primary btn-sm ms-1" data-bs-toggle="modal" data-bs-target="#creeDevoir" style="padding: 0.03rem 0.4rem; background-color: var(--main1); border-color: var(--main1); border-radius: 15px; font-size: 0.75rem; font-weight: 800;">
                     Créer un devoir
                 </button>
             </th>
@@ -76,7 +71,7 @@ $nomMatiere = fetch_single_result($queryNomMatiere, $link)['description'];
             <th> <?= isset($nbreEleves) ? $nbreEleves . ' élèves' : '' ?> </th>
             <th> Moyenne </th>
             <?php foreach ($listeDesDevoirs as $devoir): ?>
-                <th style="font-weight: 500; font-style: italic;"> Coef. <?= $devoir['coefficient'] ?> </th>
+                <th style="font-weight: 500; font-style: italic; text-align: center;"> Coef. <?= $devoir['coefficient'] ?> </th>
             <?php endforeach; ?>
         </tr>
     </thead>
@@ -193,32 +188,37 @@ $nomMatiere = fetch_single_result($queryNomMatiere, $link)['description'];
     <span class="caract">N</span> : L'élève est Non noté (N.Not)
 </div>
 
-<!-- Modal pour créer un devoir -->
-<div class="modal fade modal-devoir" id="creeDevoir" tabindex="-1" aria-labelledby="creeDevoirLabel" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" style="z-index: 10000;">
+<!-- Modal création devoir -->
+<div class="modal fade modal-devoir" id="creeDevoir" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="en-tete-dialog">
-                    Créer un devoir : <span class="nom-matiere-devoir"><?= $nomMatiere ?></span> - <?= $_POST['classe'] ?>
+                    Créer un devoir :
+                    <span class="nom-matiere-devoir"><?= $nomMatiere ?></span> - <?= $_POST['classe'] ?>
                 </div>
             </div>
+
             <div class="modal-body devoir-dialog">
-                <form action="" method="POST">
+                <form id="formCreateDevoir">
                     <div class="d-flex mb-2">
-                        <div class="text-dialog"> <label for="commentaire">Nom du devoir :</label> </div>
-                        <div class="devoir-saisie"> <input type="text" id="commentaire" maxlength="255" style="width: 100%;" name="commentaire" required> </div>
+                        <div class="text-dialog"><label>Nom du devoir :</label></div>
+                        <div class="devoir-saisie"><input type="text" name="commentaire" maxlength="255" required></div>
                     </div>
+
                     <div class="d-flex mb-2">
-                        <div class="text-dialog"> <label for="date">Devoir du :</label> </div>
-                        <div class="devoir-saisie"> <input type="date" id="date" name="date" style="width: 105px;" required> </div>
+                        <div class="text-dialog"><label>Devoir du :</label></div>
+                        <div class="devoir-saisie"><input type="date" name="date" required></div>
                     </div>
+
                     <div class="d-flex mb-2">
-                        <div class="text-dialog"> <label for="coeff">Coefficient :</label> </div>
-                        <div class="devoir-saisie"> <input type="number" step="0.01" id="coeff" min="0" max="20" style="width: 60px;" name="coeff" value="1" required> </div>
+                        <div class="text-dialog"><label>Coefficient :</label></div>
+                        <div class="devoir-saisie"><input type="number" step="0.01" min="0" max="20" name="coeff" value="1" required></div>
                     </div>
+
                     <div class="footer-dialog mt-2">
-                        <input type="button" class="btn btn-close-modal" data-bs-dismiss="modal" aria-label="Close" value="Annuler">
-                        <input class="btn btn-primary" id="footer-cree" type="submit" value="Créer">
+                        <input type="button" class="btn btn-close-modal" data-bs-dismiss="modal" value="Annuler">
+                        <input type="button" class="btn btn-primary" id="btnCreateDevoir" value="Créer">
                     </div>
                 </form>
             </div>
@@ -226,45 +226,45 @@ $nomMatiere = fetch_single_result($queryNomMatiere, $link)['description'];
     </div>
 </div>
 
-<!-- Modals pour modifier un devoir -->
+<!-- Modal modification / suppression devoirs -->
 <?php foreach ($listeDesDevoirs as $devoir): ?>
-    <div class="modal fade modal-devoir" id="modifDevoir<?= $devoir['idControle'] ?>" tabindex="-1" aria-labelledby="modifDevoirLabel<?= $devoir['idControle'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" style="z-index: 10000;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="en-tete-dialog">
-                        Modification d'un devoir : <span class="nom-matiere-devoir"><?= $nomMatiere ?></span> - <?= $_POST['classe'] ?>
+<div class="modal fade modal-devoir" id="modifDevoir<?= $devoir['idControle'] ?>" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="en-tete-dialog">
+                    Modification d'un devoir :
+                    <span class="nom-matiere-devoir"><?= $nomMatiere ?></span> - <?= $_POST['classe'] ?>
+                </div>
+            </div>
+
+            <div class="modal-body devoir-dialog">
+                <form class="formModifDevoir">
+                    <input type="hidden" name="idControle" value="<?= $devoir['idControle'] ?>">
+
+                    <div class="d-flex mb-2">
+                        <div class="text-dialog"><label>Nom du devoir :</label></div>
+                        <div class="devoir-saisie"><input type="text" name="nomDevoir" value="<?= $devoir['nomControle'] ?>" required></div>
                     </div>
-                </div>
-                <div class="modal-body devoir-dialog">
-                    <form action="" method="POST">
-                        <?php
-                        $queryInfoDevoir = "SELECT * FROM Controles WHERE idControle = " . $devoir['idControle'] . ";";
-                        $reqInfoDevoir = mysqli_query($link, $queryInfoDevoir);
-                        while ($idInfoDevoir = mysqli_fetch_array($reqInfoDevoir)): ?>
-                            <div class="d-flex mb-2">
-                                <div class="text-dialog"> <label for="nomDevoir<?= $devoir['idControle'] ?>">Nom du devoir :</label> </div>
-                                <div class="devoir-saisie"> <input type="text" id="nomDevoir<?= $devoir['idControle'] ?>" maxlength="255" style="width: 100%;" name="nomDevoir<?= $devoir['idControle'] ?>" value="<?= $idInfoDevoir['nomControle'] ?>" required> </div>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <div class="text-dialog"> <label for="dateDevoir<?= $devoir['idControle'] ?>">Devoir du :</label> </div>
-                                <div class="devoir-saisie"> <input type="date" id="dateDevoir<?= $devoir['idControle'] ?>" name="dateDevoir<?= $devoir['idControle'] ?>" value="<?= $idInfoDevoir['dates'] ?>" style="width: 105px;" required> </div>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <div class="text-dialog"> <label for="coeffDevoir<?= $devoir['idControle'] ?>">Coefficient :</label> </div>
-                                <div class="devoir-saisie"> <input type="number" step="0.01" id="coeffDevoir<?= $devoir['idControle'] ?>" min="0" max="20" style="width: 60px;" name="coeffDevoir<?= $devoir['idControle'] ?>" value="<?= $idInfoDevoir['coefficient'] ?>" required> </div>
-                            </div>
-                            <div class="footer-dialog mt-2">
-                                <input type="radio" class="btn-check" name="delete-val<?= $devoir['idControle'] ?>" id="supprimer<?= $devoir['idControle'] ?>" value="<?= $devoir['idControle'] ?>" autocomplete="off" onchange="this.form.submit()">
-                                <label class="btn delete-button-devoir" for="supprimer<?= $devoir['idControle'] ?>" style="padding: 3px 9px!important;"> Supprimer </label>
-                                <input type="button" class="btn btn-close-modal" data-bs-dismiss="modal" aria-label="Close" value="Annuler">
-                                <input type="radio" class="btn-check" name="valider<?= $devoir['idControle'] ?>" id="valider<?= $devoir['idControle'] ?>" value="<?= $devoir['idControle'] ?>" autocomplete="off" onchange="this.form.submit()">
-                                <label class="btn" id="footer-cree" for="valider<?= $devoir['idControle'] ?>" style="padding: 3px 9px!important;"> Valider </label>
-                            </div>
-                        <?php endwhile; ?>
-                    </form>
-                </div>
+
+                    <div class="d-flex mb-2">
+                        <div class="text-dialog"><label>Devoir du :</label></div>
+                        <div class="devoir-saisie"><input type="date" name="dateDevoir" value="<?= $devoir['dates'] ?>" required></div>
+                    </div>
+
+                    <div class="d-flex mb-2">
+                        <div class="text-dialog"><label>Coefficient :</label></div>
+                        <div class="devoir-saisie"><input type="number" step="0.01" min="0" max="20" name="coeffDevoir" value="<?= $devoir['coefficient'] ?>" required></div>
+                    </div>
+
+                    <div class="footer-dialog mt-2">
+                        <input type="button" class="btn delete-button-devoir btnDeleteDevoir" value="Supprimer">
+                        <input type="button" class="btn btn-primary btnUpdateDevoir" value="Valider">
+                        <input type="button" class="btn btn-close-modal" data-bs-dismiss="modal" value="Annuler">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 <?php endforeach; ?>

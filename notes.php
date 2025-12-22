@@ -37,6 +37,7 @@ $title = getPageTitle();
 <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] == "Professeur"): ?>
     <link rel="stylesheet" href="./src/css/saisie.css">
     <script src="./src/js/ajax_saisie.js" defer></script>
+    <script src="./src/js/ajax_updateNotes.js" defer></script>
 <?php endif; ?>
 
 <?php $style_script = ob_get_clean(); ?>
@@ -149,45 +150,6 @@ $title = getPageTitle();
         </div>
     <?php endif; ?>
 <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] == "Professeur"): ?>
-    <?php
-    
-    if (isset($_POST['commentaire']) && isset($_POST['coeff']) && isset($_POST['date'])) {
-        $queryIdEnseignement = "SELECT Enseignement.idEnseignement FROM Enseignement INNER JOIN Classe ON Enseignement.idClasse = Classe.idClasse WHERE Enseignement.idProf = " . $_SESSION['id'] . " AND Classe.nom = '" . $_POST['classe'] . "';";
-        $reqIdEnseignement = mysqli_query($link,$queryIdEnseignement);
-        while ($idIdEnseignement = mysqli_fetch_array($reqIdEnseignement)) {
-            $queryAjoutDevoir = "INSERT INTO Controles (idEnseignement, nomControle, coefficient, dates) VALUES (" . $idIdEnseignement['idEnseignement'] . ", '" . $_POST['commentaire'] . "', " . $_POST['coeff'] . ", '" . $_POST['date'] . "');";
-            echo $queryAjoutDevoir;
-            if (mysqli_query($link,$queryAjoutDevoir)) {
-                $queryIdEleve = "SELECT Controles.idControle, Eleves.idEleve FROM Enseignement INNER JOIN Controles ON Controles.idEnseignement = Enseignement.idEnseignement INNER JOIN Classe ON Enseignement.idClasse = Classe.idClasse INNER JOIN Eleves ON Enseignement.idClasse = Eleves.idClasse WHERE Enseignement.idProf = " . $_SESSION['id'] . " AND Classe.nom = '" . $_POST['classe'] . "' AND Controles.dates = '" . $_POST['date'] . "' AND Controles.nomControle = '" . $_POST['commentaire'] . "';";
-                $reqIdEleve = mysqli_query($link,$queryIdEleve);
-                $queryAjoutNoteEleve = "INSERT INTO Notes (idEleve, idControle) VALUES ";
-                while ($idIdEleve = mysqli_fetch_array($reqIdEleve)) {
-                    $queryAjoutNoteEleve .= "(" . $idIdEleve['idEleve'] . ', ' . $idIdEleve['idControle'] . "), ";
-                }
-            }
-        }
-        if (mysqli_query($link,substr($queryAjoutNoteEleve, 0, -2) . ';')) {unset($_POST); echo "<meta http-equiv='refresh' content='0'>";}
-    }
-    $nbre = 0;
-    while ($nbre != $nbreDevoirs) {
-        if (isset($_POST['delete-val' . $listeDesDevoirs[$nbre][2]]) && !isset($_POST['valider' . $listeDesDevoirs[$nbre][2]])) {
-            $querySupprNote = "DELETE FROM Notes WHERE idControle = " . $_POST['delete-val' . $listeDesDevoirs[$nbre][2]] . ";";
-            $querySupprimerNote = "DELETE FROM Controles WHERE idControle = " . $_POST['delete-val' . $listeDesDevoirs[$nbre][2]] . ";";
-            if (mysqli_query($link,$querySupprNote) && mysqli_query($link,$querySupprimerNote)) {
-                unset($_POST);
-                echo "<meta http-equiv='refresh' content='0'>";
-            }
-        }
-        if (isset($_POST['nomDevoir' . $listeDesDevoirs[$nbre][2]]) && isset($_POST['dateDevoir' . $listeDesDevoirs[$nbre][2]]) && isset($_POST['coeffDevoir' . $listeDesDevoirs[$nbre][2]]) && isset($_POST['valider' . $listeDesDevoirs[$nbre][2]]) && !isset($_POST['delete-val' . $listeDesDevoirs[$nbre][2]])) {
-            $queryModifControle = "UPDATE Controles SET nomControle = '" . $_POST['nomDevoir' . $listeDesDevoirs[$nbre][2]] . "', coefficient = " . $_POST['coeffDevoir' . $listeDesDevoirs[$nbre][2]] . ", dates = '" . $_POST['dateDevoir' . $listeDesDevoirs[$nbre][2]] . "' WHERE idControle = " . $_POST['valider' . $listeDesDevoirs[$nbre][2]] . ";";
-            if (mysqli_query($link,$queryModifControle)) {
-                unset($_POST);
-                echo "<meta http-equiv='refresh' content='0'>";
-            }
-        }
-        $nbre ++;
-    }
-    ?>
     <div class="choice-bar d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
             <div class="choice-title"> Saisie des notes </div>
