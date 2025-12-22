@@ -59,7 +59,7 @@ Un utilisateur disposant du rôle de professeur peut consulter ses informations 
   </tbody>
 </table>
 
-<small>*La page « Notes » est commune à tous les utilisateurs, mais son contenu et ses fonctionnalités varient en fonction du rôle (élève, parent ou professeur). Elle permet respectivement la consultation des notes, la sélection de l’enfant avec la consultation de ses notes, ou la saisie des notes.</small>
+###### *La page « Notes » est commune à tous les utilisateurs, mais son contenu et ses fonctionnalités varient en fonction du rôle (élève, parent ou professeur). Elle permet respectivement la consultation des notes, la sélection de l’enfant avec la consultation de ses notes, ou la saisie des notes.
 
 ### Utilisation
 
