@@ -35,7 +35,7 @@ Un utilisateur disposant du rôle de professeur peut consulter ses informations 
     <tr>
       <td>Page de connexion</td>
       <td colspan="3" align="center">
-        <img src="./src/img/connexion.png" alt="Page de connexion">
+        <img src="./src/img/connexion.png" alt="Page de connexion" height="200">
       </td>
     </tr>
     <tr>
