@@ -1,26 +1,66 @@
-# Pronote
+## Pronote
 
-Développement d'un site web __inspiré de Pronote__ (limitée aux fonctionnalités de gestion des notes) dans le cadre du projet de NSI 2024, effectué lors de la dernière année au lycée Descartes de Montigny.
+Développement d'un site web **inspiré de Pronote** limitée aux fonctionnalités de gestion des notes.
 
-## Fonctionnalités implémentées
+Ce projet a été initialement réalisé dans le cadre du projet de NSI 2024, durant la dernière année au lycée Descartes de Montigny.
+Il a ensuite été **redesigné** en 2025, avec une **amélioration de la sécurité** et de l'ergonomie générale de l'application.
 
-- **Élèves :**
-    - Consultation de leurs informations personnelles
-    - Accès à leur relevé de notes, trié par date (notes les plus récentes) ou par matière
-    - Accès aux appréciations
-- **Parents :**
-    - Consultation de leurs propres informations personnelles ainsi que celles de leurs enfants
-    - Accès aux notes de leurs enfants, triées par date (notes les plus récentes) ou par matière, pour chaque enfant
-    - Consultation des relevés de notes de leurs enfants, triés par date (notes les plus récentes) ou par matière, pour chaque enfant
-- **Professeurs :**
-    - Consultation de leurs informations personnelles
-    - Accès à la liste des élèves par classe
-    - Possibilité de saisir des notes pour chaque élève (entre 0 et 20), ainsi que des indications telles que "A" pour absent, "D" pour dispensé, ou "N" pour non noté
-    - Visualisation complète du relevé de notes de chaque élève, avec la possibilité d’ajouter directement une appréciation pour sa matière
-    - Possibilité de saisir des appréciations spécifiques pour chaque élève ou des appréciations générales pour chaque classe enseignée
 
-## Compte de démonstration
+### Fonctionnalités
+
+Un utilisateur disposant du rôle d'élève peut consulter ses informations personnelles directement depuis la page d'accueil. Il a également accès à son relevé de notes, qu'il peut trier soit par date soit par matière via la page **« Mes notes »**. Enfin, il peut consulter les appréciations associées à ses résultats sur la page **« Relevé de notes »**.
+
+Un utilisateur ayant le rôle de parent bénéficie des mêmes fonctionnalités que l'élève, mais appliquées aux données de ses enfants. Cependant, dans les pages **« Les notes »** et **« Relevé de notes »**, un système de sélection lui permet de choisir l'enfant dont il souhaite afficher les résultats et les appréciations.
+
+Un utilisateur disposant du rôle de professeur peut consulter ses informations personnelles depuis la page d’accueil. Il peut créer un devoir, modifier ses informations (nom, date et coefficient) et saisir les notes des élèves d’une classe sélectionnée via la page  **« Saisie des notes »**. Les notes peuvent être comprises entre 0 et 20 ou remplacées par des mentions spécifiques telles que A pour absent, D pour dispensé ou N pour non noté. Sur la page **« Saisie des appréciations »**, il peut visualiser l'ensemble du relevé de notes de chaque élève, ajouter une appréciation pour la matière qu'il enseigne, saisir des appréciations individuelles pour chaque élève.
+
+#### Compte de démonstration
 | Élève | Parent             | Professeur       |
 |-----------|--------------------|------------------|
 | _id :_ eleve_demo| _id :_ parent_demo | _id :_ prof_demo |
 | _mdp :_ demoEleve | _mdp :_ demoParent | _mdp :_ demoProf |
+
+## Aperçu de l'application
+
+<table>
+  <thead>
+    <tr>
+      <th>Page</th>
+      <th>Élève</th>
+      <th>Parent</th>
+      <th>Professeur</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Page de connexion</td>
+      <td colspan="3" align="center">
+        <img src="./src/img/connexion.png" alt="Page de connexion" height="100">
+      </td>
+    </tr>
+    <tr>
+      <td>Page « Notes »*</td>
+      <td align="center">
+        <img src="./src/img/notes_eleve.png" alt="Notes Élève" height="100">
+      </td>
+      <td align="center">
+        <img src="./src/img/notes_parent.png" alt="Notes Parent" height="100">
+      </td>
+      <td align="center">
+        <img src="./src/img/notes_prof.png" alt="Notes Professeur" height="100">
+      </td>
+    </tr>
+    <tr>
+      <td>Relevé de notes</td>
+      <td align="center"></td>
+      <td align="center"></td>
+      <td align="center"></td>
+    </tr>
+  </tbody>
+</table>
+
+<small>*La page « Notes » est commune à tous les utilisateurs, mais son contenu et ses fonctionnalités varient en fonction du rôle (élève, parent ou professeur). Elle permet respectivement la consultation des notes, la sélection de l’enfant avec la consultation de ses notes, ou la saisie des notes.</small>
+
+### Utilisation
+
+Pour utiliser l'application, il suffit de cloner le dépôt, lancer un serveur local incluant Apache et MySQL (comme XAMPP ou WAMP), configurer la base de données en important le fichier SQL `src/bdd.sql`, renseigner les paramètres de connexion à la base de données dans le fichier de configuration PHP `src/php/config.php`, puis accéder au site depuis un navigateur web.
