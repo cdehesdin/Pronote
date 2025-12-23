@@ -24,6 +24,7 @@
     cursor: pointer;
     border: 0px;
     padding: 5px 3px;
+    color: var(--color)!important;
     background-color: inherit;
     width: 57px;
     text-align: end;}

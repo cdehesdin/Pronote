@@ -1,0 +1,75 @@
+/*============= Relevé de notes ===============*/
+.table-releve tbody {border-left: 1px solid #c6c6c6;}
+.table-releve tbody tr:last-child {border-bottom: 1px solid #c6c6c6;}
+.table-releve tbody td {
+    border-top: 1px solid #c6c6c6;
+    border-right: 1px solid #c6c6c6;
+    vertical-align: top;
+    line-height: 14px;
+    padding: 4px 3px 8px;
+    font-weight: 200;}
+.table-releve .matiere {min-width: 295px;}
+.table-releve .moyenne, .table-saisie .moyenne, .table-appreciation .moyenne {
+    background-color: #6b6e77;
+    min-width: 56px;}
+.table-releve .devoirs {min-width: 78px;}
+.table-releve .moyenne-elem {
+    color: #fff;
+    font-weight: 700;
+    text-align: end;}
+.table-releve .note-elem {text-align: end;}
+.table-releve .nom-matiere {text-transform: uppercase;}
+.table-releve .note-elem-important {font-weight: 900;}
+.table-releve .note-elem-sur-20 {
+    padding-left: 2px;
+    font-size: 0.7rem;}
+.table-releve .note-elem-info {
+    padding-top: 1px;
+    line-height: 11px;
+    font-size: 0.6rem;}
+.table-releve .releve-moyenne-generale {
+    background-color: #fff;
+    padding-right: 3px;
+    font-weight: 200;
+    text-align: end;}
+.table-releve .releve-moyenne-generale-note {
+    padding: 1px 3px;
+    background-color: #6b6e77;
+    color: #fff;
+    text-align: end;
+    border-left: 1px solid #c6c6c6;
+    border-right: 1px solid #c6c6c6;
+    border-bottom: 1px solid #c6c6c6;}
+.appreciation {
+    position: relative;
+    padding: 0!important;
+    margin: 0!important;}
+.appreciation form {
+    position: absolute;
+    inset: 0;}
+.appreciation textarea {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    padding: 3px 4px;
+    margin: 0px;
+    color: var(--color)!important;
+    vertical-align: top;
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+    overflow-y: hidden;
+    border-radius: 0;
+    background-color: inherit;}
+.appreciation textarea:disabled {
+    cursor: not-allowed;
+    background-color: #f8f8f8!important;}
+.appreciation textarea:focus {
+    cursor: text;
+    vertical-align: top;
+    outline: none;
+    text-align: start;
+    padding: 3px 4px;
+    overflow-y: hidden;
+    border: 1px solid var(--main3);}
+.app-elv-parent {padding: 3px 4px!important;}

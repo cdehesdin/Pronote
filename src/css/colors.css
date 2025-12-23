@@ -2,30 +2,8 @@
     --main1: rgb(41, 148, 122);
     --main2: rgb(30, 141, 115);
     --main3: rgb(205, 221, 216);
-}
-
-
-/**************************************************/
-/*                    LIGHT MODE                  */
-/**************************************************/
-@media (prefers-color-scheme: light) {
-    :root {
-        --background-color: #fff;
-        --background: linear-gradient(to left bottom in oklab, rgb(236, 244, 242) 0px, rgb(255, 255, 255) 60%);
-        --color: #232425;
-        --hover: rgba(6, 6, 8, 0.66);
-    }
-}
-
-
-/**************************************************/
-/*                    DARK MODE                  */
-/**************************************************/
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background-color: #232425;
-        --background: linear-gradient(to left bottom in oklab, rgb(43, 49, 47) 0px, rgb(29, 29, 29) 60%);
-        --color: #fff;
-        --hover: rgb(50, 50, 50, 0.66);
-    }
+    --background-color: #fff;
+    --background: linear-gradient(to left bottom in oklab, rgb(236, 244, 242) 0px, rgb(255, 255, 255) 60%);
+    --color: #232425;
+    --hover: rgba(6, 6, 8, 0.66);
 }
