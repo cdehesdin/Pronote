@@ -15,9 +15,9 @@ Un utilisateur ayant le rôle de parent bénéficie des mêmes fonctionnalités 
 Un utilisateur disposant du rôle de professeur peut consulter ses informations personnelles depuis la page d’accueil. Il peut créer un devoir, modifier ses informations (nom, date et coefficient) et saisir les notes des élèves d’une classe sélectionnée via la page  **« Saisie des notes »**. Les notes peuvent être comprises entre 0 et 20 ou remplacées par des mentions spécifiques telles que A pour absent, D pour dispensé ou N pour non noté. Sur la page **« Saisie des appréciations »**, il peut visualiser l'ensemble du relevé de notes de chaque élève, ajouter une appréciation pour la matière qu'il enseigne, saisir des appréciations individuelles pour chaque élève.
 
 #### Compte de démonstration
-| Élève | Parent             | Professeur       |
-|-----------|--------------------|------------------|
-| _id :_ eleve_demo| _id :_ parent_demo | _id :_ prof_demo |
+| Élève              | Parent              | Professeur        |
+|--------------------|---------------------|-------------------|
+| _id :_ eleve_demo  | _id :_ parent_demo  | _id :_ prof_demo  |
 | _mdp :_ eleve_demo | _mdp :_ parent_demo | _mdp :_ prof_demo |
 
 ### Aperçu de l'application
