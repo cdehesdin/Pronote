@@ -33,13 +33,13 @@ Un utilisateur disposant du rôle de professeur peut consulter ses informations 
   </thead>
   <tbody>
     <tr>
-      <td>Page de connexion</td>
+      <td>Connexion</td>
       <td colspan="3" align="center">
         <img src="./src/img/connexion.png" alt="Page de connexion" height="200">
       </td>
     </tr>
     <tr>
-      <td>Page « Notes »*</td>
+      <td>Notes</td>
       <td align="center">
         <img src="./src/img/notes_eleve.png" alt="Notes Élève" height="100">
       </td>
@@ -59,7 +59,7 @@ Un utilisateur disposant du rôle de professeur peut consulter ses informations 
   </tbody>
 </table>
 
-###### *La page « Notes » est commune à tous les utilisateurs, mais son contenu et ses fonctionnalités varient en fonction du rôle (élève, parent ou professeur). Elle permet respectivement la consultation des notes, la sélection de l’enfant avec la consultation de ses notes, ou la saisie des notes.
+###### *La page « Notes » et « Relevé de notes » est commune à tous les utilisateurs, mais son contenu et ses fonctionnalités varient en fonction du rôle (élève, parent ou professeur). Elle permet respectivement la consultation des notes et du relevé, la sélection de l’enfant avec la consultation de ses notes et de son relevé, ou la saisie des notes et des appréciations avec une visualisation du relevé.
 
 ### Utilisation
 
