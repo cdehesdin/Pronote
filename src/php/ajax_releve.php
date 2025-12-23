@@ -136,18 +136,18 @@ while ($m = mysqli_fetch_assoc($resMatieres)) {
 ?>
 
 <table class="table-releve">
-    <col class="matiere" style="background-color:#e2e2e2;">
+    <col class="matiere">
     <col class="moyenne">
     <?php for ($i=0;$i<$nbreNoteMaximum;$i++): ?>
         <col class="devoirs">
     <?php endfor; ?>
     <?php if ($IdEleve && $ClasseEleve): ?>
-        <col style="min-width:319px;max-width:319px;">
+        <col style="min-width: 319px; max-width: 319px; width: 319px;">
     <?php endif; ?>
 
     <thead>
         <tr>
-            <th>Matières</th>
+            <th></th>
             <th>Moy.</th>
             <th colspan="<?= $nbreNoteMaximum ?>">Devoirs</th>
             <th>Appréciation</th>
@@ -172,7 +172,7 @@ while ($m = mysqli_fetch_assoc($resMatieres)) {
         while ($m = mysqli_fetch_assoc($res)):
         ?>
             <tr>
-                <td>
+                <td class="col-matiere">
                     <span class="nom-matiere"><?= $m['description'] ?></span><br>
                     <?= ($m['sexe']=='F'?'Mme ':'M. ') . $m['nomProf'] ?>
                 </td>

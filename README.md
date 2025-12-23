@@ -52,9 +52,15 @@ Un utilisateur disposant du rôle de professeur peut consulter ses informations 
     </tr>
     <tr>
       <td>Relevé de notes</td>
-      <td align="center"></td>
-      <td align="center"></td>
-      <td align="center"></td>
+      <td align="center">
+        <img src="./src/img/releve_eleve.png" alt="Notes Élève" height="100">
+      </td>
+      <td align="center">
+        <img src="./src/img/releve_parent.png" alt="Notes Parent" height="100">
+      </td>
+      <td align="center">
+        <img src="./src/img/releve_prof.png" alt="Notes Professeur" height="100">
+      </td>
     </tr>
   </tbody>
 </table>

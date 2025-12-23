@@ -44,7 +44,14 @@ $title = getPageTitle();
 
 <?php if (isset($_SESSION['login'])):?>
     <div class="choice-bar d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center <?php if ($_SESSION['role'] != 'Eleve') {echo "mb-3";} ?>">
+            <div>
+                <?php if ($_SESSION['role'] == 'Parent'): ?>
+                    Choisir un enfant : 
+                <?php elseif ($_SESSION['role'] == 'Professeur'): ?>
+                    Choisir une classe, puis un élève :
+                <?php endif; ?>
+            </div>
             <?php if ($_SESSION['role'] == 'Parent' || $_SESSION['role'] == 'Professeur'): ?>
                 <?php if ($_SESSION['role'] == 'Professeur'): ?>
                     <div class="dropdown d-inline ms-2">
@@ -68,7 +75,7 @@ $title = getPageTitle();
                     </div>
                 <?php endif; ?>
                 <div class="dropdown d-inline me-2">
-                    <form id="form-eleve">
+                    <form class="ms-2" id="form-eleve">
                         <?php if ($_SESSION['role'] == "Parent"): ?>
                             <?php
                             function getEnfants(mysqli $link, int $idUtilisateur): array {
