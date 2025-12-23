@@ -29,7 +29,7 @@
                 <img src="./src/img/logo.jpeg" alt="Logo">
                 <div>
                     <div>Pronote</div>
-                    <div class="copyright">&copy; Clément DEHESDIN. 2025-26. Licence MIT.</div>
+                    <div class="copyright">&copy; Clément DEHESDIN. 2024-25. Licence MIT.</div>
                 </div>
             </div>
             <div>
