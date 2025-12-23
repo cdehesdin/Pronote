@@ -68,9 +68,19 @@
                                     <a href="./notes.php"><i class="fa-solid fa-graduation-cap me-2"></i>Saisie des notes</a>
                                 </div>
                             <?php endif; ?>
-                            <div class="<?php if (isset($title) && $title == "Relevé de notes") echo "x-active"; ?>">
-                                <a href="./releve.php"><i class="fa-solid fa-user-graduate me-2"></i>Relevé de notes</a>
-                            </div>
+                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == "Eleve"): ?>
+                                <div class="<?php if (isset($title) && ($title == "Mon relevé de notes")) echo "x-active"; ?>">
+                                    <a href="./releve.php"><i class="fa-solid fa-user-graduate me-2"></i>Mon relevé de notes</a>
+                                </div>
+                            <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] == "Parent"): ?>
+                                <div class="<?php if (isset($title) && ($title == "Relevé de notes")) echo "x-active"; ?>">
+                                    <a href="./releve.php"><i class="fa-solid fa-user-graduate me-2"></i>Relevé de notes</a>
+                                </div>
+                            <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] == "Professeur"): ?>
+                                <div class="<?php if (isset($title) && ($title == "Saisie des appréciations")) echo "x-active"; ?>">
+                                    <a href="./releve.php"><i class="fa-solid fa-user-graduate me-2"></i>Saisie des appréciations</a>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

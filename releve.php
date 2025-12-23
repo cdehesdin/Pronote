@@ -2,81 +2,30 @@
 session_start();
 require_once __DIR__ . '/src/php/config.php';
 
-if (!isset($_SESSION['login'])) {
-    header('Location: ./index.php');
-    exit;
+/* =========================
+   Sécurité
+   ========================= */
+function checkAccess(): void {
+    if (!isset($_SESSION['login'])) {
+        header('Location: ./index.php');
+        exit;
+    }
 }
 
-// Définition du titre de la page
-if (!isset($_SESSION['login'])) {
-    $title = "Connexion";
-} else {
-    if ($_SESSION['role'] == 'Eleve') {
-        $title = "Mon relevé de notes";
-    } else {
-        $title = "Relevé de notes";
+/* =========================
+   Titre de page
+   ========================= */
+function getPageTitle(): string {
+    return match ($_SESSION['role'] ?? '') {
+        'Eleve'  => 'Mon relevé de notes',
+        'Parent' => 'Relevé de notes',
+        'Professeur' => 'Saisie des appréciations',
+        default  => 'Relevé de notes'
     };
 }
 
-
-
-if (isset($_SESSION['role']) && ($_SESSION['role'] == "Eleve" || $_SESSION['role'] == "Parent")) {
-    /* =========================
-    Élève courant
-    ========================= */
-    function getEleveCourant(): ?array {
-        if ($_SESSION['role'] === 'Eleve') {
-            return [
-                'id'     => $_SESSION['id'],
-                'classe' => $_SESSION['classe']
-            ];
-        }
-
-        if ($_SESSION['role'] === 'Parent') {
-            $index = $_GET['enfants'] ?? 0;
-
-            if (isset($_SESSION['idEleve'][$index], $_SESSION['classe'][$index])) {
-                return [
-                    'id'     => $_SESSION['idEleve'][$index],
-                    'classe' => $_SESSION['classe'][$index]
-                ];
-            }
-        }
-
-        return null;
-    }
-
-    /* =========================
-    Enfants du parent
-    ========================= */
-    function getEnfants(mysqli $link, int $idUtilisateur): array {
-        $stmt = $link->prepare(
-            "SELECT E.idEleve, E.idClasse, E.nom, E.prenom
-            FROM Parents P
-            JOIN Eleves E 
-            ON P.idParent = E.respLegal1Id 
-            OR P.idParent = E.respLegal2Id
-            WHERE P.idUtilisateur = ?"
-        );
-        $stmt->bind_param("i", $idUtilisateur);
-        $stmt->execute();
-        $res = $stmt->get_result();
-
-        return $res->fetch_all(MYSQLI_ASSOC);
-    }
-
-    /* =========================
-    Initialisation
-    ========================= */
-    $eleve = getEleveCourant();
-
-    $IdEleve     = $eleve['id']     ?? null;
-    $ClasseEleve = $eleve['classe'] ?? null;
-
-    $enfants = ($_SESSION['role'] === 'Parent')
-        ? getEnfants($link, $_SESSION['idUtilisateur'])
-        : [];
-}
+checkAccess();
+$title = getPageTitle();
 ?>
 
 
@@ -89,7 +38,6 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == "Eleve" || $_SESSION['role
 <?php endif; ?>
 
 <?php $style_script = ob_get_clean(); ?>
-
 
 
 <?php ob_start(); ?>
@@ -122,6 +70,27 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == "Eleve" || $_SESSION['role
                 <div class="dropdown d-inline me-2">
                     <form id="form-eleve">
                         <?php if ($_SESSION['role'] == "Parent"): ?>
+                            <?php
+                            function getEnfants(mysqli $link, int $idUtilisateur): array {
+                                $stmt = $link->prepare(
+                                    "SELECT E.idEleve, E.idClasse, E.nom, E.prenom
+                                    FROM Parents P
+                                    JOIN Eleves E 
+                                    ON P.idParent = E.respLegal1Id 
+                                    OR P.idParent = E.respLegal2Id
+                                    WHERE P.idUtilisateur = ?"
+                                );
+                                $stmt->bind_param("i", $idUtilisateur);
+                                $stmt->execute();
+                                $res = $stmt->get_result();
+
+                                return $res->fetch_all(MYSQLI_ASSOC);
+                            }
+
+                            $enfants = ($_SESSION['role'] === 'Parent')
+                                ? getEnfants($link, $_SESSION['idUtilisateur'])
+                                : [];
+                            ?>
                             <select id="classe"
                                     name="enfants"
                                     class="form-select form-select-sm">

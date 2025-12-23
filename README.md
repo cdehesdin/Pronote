@@ -18,7 +18,7 @@ Un utilisateur disposant du rôle de professeur peut consulter ses informations 
 | Élève | Parent             | Professeur       |
 |-----------|--------------------|------------------|
 | _id :_ eleve_demo| _id :_ parent_demo | _id :_ prof_demo |
-| _mdp :_ demoEleve | _mdp :_ demoParent | _mdp :_ demoProf |
+| _mdp :_ eleve_demo | _mdp :_ parent_demo | _mdp :_ prof_demo |
 
 ### Aperçu de l'application
 
